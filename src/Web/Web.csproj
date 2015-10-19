@@ -238,6 +238,12 @@
     <Content Include="Content\AdminLTE\less\AdminLTE.min.css">
       <DependentUpon>AdminLTE.css</DependentUpon>
     </Content>
+    <Content Include="Content\AdminLTE\less\skins\skin-green.css">
+      <DependentUpon>skin-green.less</DependentUpon>
+    </Content>
+    <Content Include="Content\AdminLTE\less\skins\skin-green.min.css">
+      <DependentUpon>skin-green.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
