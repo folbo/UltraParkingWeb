@@ -1,22 +1,18 @@
 ﻿[
   {
-    "outputFile": "Content/plugins/bootstrap-slider/bootstrap-slider.es5.js",
-    "inputFile": "Content/plugins/bootstrap-slider/bootstrap-slider.js"
+    "outputFile": "Content/fontawesome4/font-awesome.css",
+    "inputFile": "Content/fontawesome4/font-awesome.less"
   },
   {
-    "outputFile": "Content/plugins/bootstrap-slider/slider.css",
-    "inputFile": "Content/plugins/bootstrap-slider/slider.less"
+    "outputFile": "Content/bootstrap/bootstrap.css",
+    "inputFile": "Content/bootstrap/bootstrap.less"
   },
   {
-    "outputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.es5.js",
-    "inputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"
+    "outputFile": "Content/AdminLTE/less/AdminLTE.css",
+    "inputFile": "Content/AdminLTE/less/AdminLTE.less"
   },
   {
-    "outputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css",
-    "inputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.less"
-  },
-  {
-    "outputFile": "Content/plugins/chartjs/Chart.es5.js",
-    "inputFile": "Content/plugins/chartjs/Chart.js"
+    "outputFile": "Content/AdminLTE/less/skins/skin-green.css",
+    "inputFile": "Content/AdminLTE/less/skins/skin-green.less"
   }
 ]
