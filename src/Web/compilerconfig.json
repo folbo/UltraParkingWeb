@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "Content/plugins/bootstrap-slider/bootstrap-slider.es5.js",
+    "inputFile": "Content/plugins/bootstrap-slider/bootstrap-slider.js"
+  },
+  {
+    "outputFile": "Content/plugins/bootstrap-slider/slider.css",
+    "inputFile": "Content/plugins/bootstrap-slider/slider.less"
+  },
+  {
+    "outputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.es5.js",
+    "inputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"
+  },
+  {
+    "outputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css",
+    "inputFile": "Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.less"
+  },
+  {
+    "outputFile": "Content/plugins/chartjs/Chart.es5.js",
+    "inputFile": "Content/plugins/chartjs/Chart.js"
+  }
+]
