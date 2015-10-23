@@ -494,4 +494,13 @@ namespace Web.Controllers
         }
         #endregion
     }
+
+    //feel free to move it wherever you want
+    [Flags]
+    public enum Roles
+    {
+        Admin = 1,
+        ParkingOwner = 2,
+        User = 4
+    }
 }
