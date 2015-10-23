@@ -190,12 +190,29 @@ desired effect
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
+                                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="pull-left">
+                                            @using (Html.BeginForm("Index", "Manage"))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button class="btn btn-default btn-flat" type="submit">Profile</button>
+                                            }
+                                        </div>
+                                        <div class="pull-right">
+                                            @using (Html.BeginForm("LogOff", "Account"))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button class="btn btn-default btn-flat" type="submit">Wyloguj</button>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pull-right">
+                                            @Html.ActionLink("Zaloguj", "Login", "Account", null, new { @class="btn btn-default btn-flat"})
+                                        </div>
+                                    }
                                 </li>
                             </ul>
                         </li>
