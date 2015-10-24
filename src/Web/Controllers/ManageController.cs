@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Web.Models;
+using Ultra.Web.Models;
 
-namespace Web.Controllers
+namespace Ultra.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller

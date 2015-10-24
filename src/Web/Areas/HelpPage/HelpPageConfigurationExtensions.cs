@@ -11,10 +11,11 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using Web.Areas.HelpPage.ModelDescriptions;
-using Web.Areas.HelpPage.Models;
+using Ultra.Web.Areas.HelpPage.ModelDescriptions;
+using Ultra.Web.Areas.HelpPage.Models;
+using Ultra.Web.Areas.HelpPage.SampleGeneration;
 
-namespace Web.Areas.HelpPage
+namespace Ultra.Web.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

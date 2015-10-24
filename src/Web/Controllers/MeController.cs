@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
-using Web.Models;
+using Ultra.Web.Models;
 
-namespace Web.Controllers
+namespace Ultra.Web.Controllers
 {
     [Authorize]
     public class MeController : ApiController

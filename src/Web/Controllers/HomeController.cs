@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Web.Helpers;
+using Ultra.Core.Domain.Queries;
+using Ultra.Web.Helpers;
+using Ultra.Web.Infrastructure;
 
-namespace Web.Controllers
+namespace Ultra.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
+            Please.Give(new AllProjects());
             return View();
         }
     }

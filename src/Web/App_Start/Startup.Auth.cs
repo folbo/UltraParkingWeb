@@ -8,10 +8,10 @@ using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using Web.Models;
-using Web.Providers;
+using Ultra.Web.Models;
+using Ultra.Web.Providers;
 
-namespace Web
+namespace Ultra.Web
 {
     public partial class Startup
     {

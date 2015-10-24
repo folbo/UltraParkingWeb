@@ -1,4 +1,4 @@
-namespace Web.Areas.HelpPage.ModelDescriptions
+namespace Ultra.Web.Areas.HelpPage.ModelDescriptions
 {
     public class KeyValuePairModelDescription : ModelDescription
     {

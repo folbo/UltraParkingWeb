@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Web.Startup))]
+[assembly: OwinStartup(typeof(Ultra.Web.Startup))]
 
-namespace Web
+namespace Ultra.Web
 {
     public partial class Startup
     {

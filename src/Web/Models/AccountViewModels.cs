@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Web.Models
+namespace Ultra.Web.Models
 {
     // Models returned by AccountController actions.
     public class ExternalLoginConfirmationViewModel

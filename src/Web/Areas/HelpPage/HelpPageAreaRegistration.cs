@@ -1,7 +1,8 @@
 using System.Web.Http;
 using System.Web.Mvc;
+using Ultra.Web.Areas.HelpPage.App_Start;
 
-namespace Web.Areas.HelpPage
+namespace Ultra.Web.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {
