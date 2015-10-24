@@ -13,6 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/Content/fontawesome4/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-green.min.css">
+    <link rel="stylesheet" href="~/Content/Site.min.css">
     @RenderSection("CSS", required: false)
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -139,9 +140,17 @@ desired effect
                         }
                         else
                         {
-                            <li class="dropdown">
-                                @Html.ActionLink("Zaloguj", "Login", "Account", null, new { @class = "dropdown-toggle user user-menu" })
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="hidden-xs">Login</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    @Html.Partial("Login")
+                                </ul>
                             </li>
+                            
                         }
                     </ul>
                 </div>
