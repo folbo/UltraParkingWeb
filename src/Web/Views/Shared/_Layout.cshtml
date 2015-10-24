@@ -117,12 +117,29 @@ desired effect
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
+                                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                                    {
                                     <div class="pull-left">
-                                        <a href="@Url.Action("Index","Manage")" class="btn btn-default btn-flat">Profil</a>
+                                            @using (Html.BeginForm("Index", "Manage"))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button class="btn btn-default btn-flat" type="submit">Profile</button>
+                                            }
+                                        </div>
+                                        <div class="pull-right">
+                                            @using (Html.BeginForm("LogOff", "Account"))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button class="btn btn-default btn-flat" type="submit">Wyloguj</button>
+                                            }
                                     </div>
+                                    }
+                                    else
+                                    {
                                     <div class="pull-right">
-                                        <a href="@Url.Action("LogOff","Account")" class="btn btn-warning btn-flat">Wyloguj się</a>
+                                            @Html.ActionLink("Zaloguj", "Login", "Account", null, new { @class="btn btn-default btn-flat"})
                                     </div>
+                                    }
                                 </li>
                             </ul>
                         </li>
