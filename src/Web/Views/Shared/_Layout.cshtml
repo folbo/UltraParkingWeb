@@ -13,7 +13,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/Content/fontawesome4/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-green.min.css">
-    @RenderSection("CSS",required:false)
+    <link rel="stylesheet" href="~/Content/Site.min.css">
+    @RenderSection("CSS", required: false)
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -86,40 +87,40 @@ desired effect
                             </ul>
                         </li>
                         <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-@*                                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">*@
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{User Name}</span>@*todo*@
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    @*<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
-                                    <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
-                                    {
-                                    <div class="pull-left">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    @*                                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">*@
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs">@HttpContext.Current.User.Identity.Name</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        @*<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
+                                        <p>
+                                            @HttpContext.Current.User.Identity.Name;
+                                            <small>Member since Nov. 2012</small>
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
                                             @using (Html.BeginForm("Index", "Manage"))
                                             {
                                                 @Html.AntiForgeryToken()
@@ -132,17 +133,25 @@ desired effect
                                                 @Html.AntiForgeryToken()
                                                 <button class="btn btn-default btn-flat" type="submit">Wyloguj</button>
                                             }
-                                    </div>
-                                    }
-                                    else
-                                    {
-                                    <div class="pull-right">
-                                            @Html.ActionLink("Zaloguj", "Login", "Account", null, new { @class="btn btn-default btn-flat"})
-                                    </div>
-                                    }
-                                </li>
-                            </ul>
-                        </li>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="hidden-xs">Login</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    @Html.Partial("Login")
+                                </ul>
+                            </li>
+                            
+                        }
                     </ul>
                 </div>
             </nav>
@@ -168,13 +177,13 @@ desired effect
             </section>
             <!-- /.sidebar -->
         </aside>
-        
+
         <div class="content-wrapper">
-            
+
             <!-- Main content -->
             <section class="content">
                 @RenderBody()
-             </section><!-- /.content -->
+            </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
         <!-- Main Footer -->
         <footer class="main-footer">
@@ -185,7 +194,7 @@ desired effect
             <!-- Default to the left -->
             <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
         </footer>
-       
+
         <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
     <!-- JS SCRIPTS -->
@@ -243,4 +252,4 @@ desired effect
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-    *@
+*@
