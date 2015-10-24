@@ -12,7 +12,7 @@ namespace Ultra.Web.Controllers
     {
         public ActionResult Index()
         {
-            Please.Give(new AllProjects());
+            //Please.Give(new AllProjects());
             return View();
         }
     }
