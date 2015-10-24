@@ -1,34 +1,34 @@
-﻿@using Ultra.Web.Models
-@model Ultra.Web.Models.LoginViewModel
-
-
-@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+﻿@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <li class="login-header">
         <p>
             Login
         </p>
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         <div style="margin-bottom: 15px">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Email) })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Email) })*@
+            @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+            <input type="text" name="Email" class="form-control" placeholder="login" />
         </div>
         <div style="margin-bottom: 15px">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Password) })
-            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Password) })*@
+            @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
+            <input type="password" name="Password" class="form-control" placeholder="password" />
         </div>
 
         @* Enable this once you have account confirmation enabled for password reset functionality
-            <p>
-                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-            </p>*@
+        <p>
+            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+        </p>*@
     </li>
     <li class="user-footer">
         <div class="pull-left">
             <div class="checkbox col-md-offset-2">
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe)
+                @*@Html.CheckBoxFor(m => m.RememberMe)*@
+                @*@Html.LabelFor(m => m.RememberMe)*@
+                <input type="checkbox" id="RememberMe" name="RememberMe" value="true"/>
+                <label for="RememberMe">Zapamiętaj mnie</label>
             </div>
         </div>
         <div class="pull-right">
@@ -38,10 +38,4 @@
             @Html.ActionLink("Register as a new user", "Register", "Account", null, null)
         </p>
     </li>
-}
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
