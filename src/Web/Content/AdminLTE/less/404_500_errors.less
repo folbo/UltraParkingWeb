@@ -13,6 +13,8 @@
     float: left;
     font-size: 100px;
     font-weight: 300;
+    display:inline;
+    vertical-align:middle;
     @media (max-width: @screen-sm-max) {
       float: none;
       text-align: center;
@@ -20,7 +22,9 @@
   }
   //For the message
   > .error-content {
-    margin-left: 190px;
+    display:inline;
+    vertical-align:middle;
+    margin-left: 260px; 
     @media (max-width: @screen-sm-max) {
       margin-left: 0;
     }
@@ -31,6 +35,5 @@
         text-align: center;
       }
     }
-    display: block;
   }
 }

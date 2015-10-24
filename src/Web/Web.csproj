@@ -1220,11 +1220,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Shared\404.cshtml" />
+    <Content Include="Views\Shared\500.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Parking\" />
     <Folder Include="Views\Errors\" />
+    <Folder Include="Views\Parking\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

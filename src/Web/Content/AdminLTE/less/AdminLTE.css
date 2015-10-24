@@ -3234,6 +3234,8 @@ table.text-center th {
   float: left;
   font-size: 100px;
   font-weight: 300;
+  display: inline;
+  vertical-align: middle;
 }
 @media (max-width: 991px) {
   .error-page > .headline {
@@ -3242,8 +3244,9 @@ table.text-center th {
   }
 }
 .error-page > .error-content {
-  margin-left: 190px;
-  display: block;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 260px;
 }
 @media (max-width: 991px) {
   .error-page > .error-content {
