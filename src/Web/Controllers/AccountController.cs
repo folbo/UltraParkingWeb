@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Ultra.Web.Infrastructure;
 using Ultra.Web.Models;
 
 namespace Ultra.Web.Controllers
@@ -64,6 +65,7 @@ namespace Ultra.Web.Controllers
             return new EmptyResult();
         }
 
+        /* usunięte get, bo mamy login w dymku
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -72,6 +74,7 @@ namespace Ultra.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+        */
 
         //
         // POST: /Account/Login
@@ -80,10 +83,12 @@ namespace Ultra.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            /*
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+            */
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
