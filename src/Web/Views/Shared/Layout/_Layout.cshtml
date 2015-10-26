@@ -45,9 +45,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/Content/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <script src="~/Content/bootstrap/bootstrap.js"></script>
     <script src="~/Content/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="~/Content/AdminLTE/app.js"></script>
+    <script src="~/Content/AdminLTE/app.js"></script>
     <script src="~/Content/ko/knockout-3.3.0.js"></script>
-<script src="~/Content/ko/knockout.mapping-latest.js"></script>
+    <script src="~/Content/ko/knockout.mapping-latest.js"></script>
     <script type="text/javascript">
         $(function () {
             function LoginBox() {
@@ -58,11 +58,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 self.RememberMe = ko.observable(true);
 
                 self.Login = function() {
-                    alert(self.Email());
+                    var params = ko.toJSON(self);
+                    //window.alert(params);
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Login", "Account")',
+                        data: params,
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            if (data.success === true) {
+                                location.reload();
+                            } else {
+                                alert("coś jest nie tak");
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            //500, 404?
+                            alert(jqXHR + " " + textStatus + " " + errorThrown);
+                        }
+                    });
                 }
 
             };
-
 
             ko.applyBindings(new LoginBox(), document.getElementById("login-box"));
         });
