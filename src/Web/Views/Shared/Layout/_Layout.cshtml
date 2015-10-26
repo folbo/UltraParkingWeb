@@ -45,7 +45,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/Content/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <script src="~/Content/bootstrap/bootstrap.js"></script>
     <script src="~/Content/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="~/Content/AdminLTE/app.js"></script>
+<script src="~/Content/AdminLTE/app.js"></script>
+    <script src="~/Content/ko/knockout-3.3.0.js"></script>
+<script src="~/Content/ko/knockout.mapping-latest.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            function LoginBox() {
+                var self = this;
+
+                self.Email = ko.observable();
+                self.Password = ko.observable();
+                self.RememberMe = ko.observable(true);
+
+                self.Login = function() {
+                    alert(self.Email());
+                }
+
+            };
+
+
+            ko.applyBindings(new LoginBox(), document.getElementById("login-box"));
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

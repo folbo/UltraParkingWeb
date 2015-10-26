@@ -1,51 +1,33 @@
-﻿<li class="dropdown user user-menu">
+﻿<li class="dropdown user user-menu" id="login-box">
     <!-- Menu Toggle Button -->
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <span class="hidden-xs">Login</span>
     </a>
     <ul class="dropdown-menu">
-        <!-- The user image in the menu -->
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
             <li class="login-header">
                 <p>
                     Login
                 </p>
-                @Html.AntiForgeryToken()
-                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
                 <div style="margin-bottom: 15px">
-                    @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Email) })*@
-                    @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
-                    <input type="text" name="Email" class="form-control" placeholder="login" />
+                    <input type="text" class="form-control" placeholder="login" data-bind="value:Email" />
                 </div>
                 <div style="margin-bottom: 15px">
-                    @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Password) })*@
-                    @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
-                    <input type="password" name="Password" class="form-control" placeholder="password" />
+                    <input type="password" class="form-control" placeholder="password" data-bind="value:Password"/>
                 </div>
-
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                <div class="checkbox" style="margin-bottom: 15px">
+                    <input type="checkbox" id="RememberMe" data-bind="value:RememberMe"/>
+                    <label for="RememberMe">Zapamiętaj mnie</label>
+                </div>
+                <p class="clearfix"></p>
             </li>
             <li class="user-footer">
                 <div class="pull-left">
-                    <div class="checkbox col-md-offset-2">
-                        @*@Html.CheckBoxFor(m => m.RememberMe)*@
-                        @*@Html.LabelFor(m => m.RememberMe)*@
-                        <input type="checkbox" id="RememberMe" name="RememberMe" value="true" />
-                        <label for="RememberMe">Zapamiętaj mnie</label>
-                    </div>
+                    <a href="@Url.Action("Register","Account")" class="btn btn-primary">Zarejestruj się</a>
                 </div>
                 <div class="pull-right">
-                    <input type="submit" value="Log in" class="btn btn-default" />
+                    <input type="submit" value="Log in" class="btn btn-default" data-bind="click:Login"/>
                 </div>
-                <p style="clear:both">
-                    @Html.ActionLink("Register as a new user", "Register", "Account", null, null)
-                </p>
             </li>
-        }
 
     </ul>
 </li>

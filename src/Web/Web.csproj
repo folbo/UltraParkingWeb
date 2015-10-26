@@ -992,6 +992,8 @@
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\ko\knockout-3.3.0.js" />
+    <Content Include="Content\ko\knockout.mapping-latest.js" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
@@ -1247,6 +1249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ko\bindings\" />
     <Folder Include="Views\Parking\" />
   </ItemGroup>
   <ItemGroup>
