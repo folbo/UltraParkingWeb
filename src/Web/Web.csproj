@@ -260,6 +260,8 @@
     <Content Include="Content\AdminLTE\less\skins\skin-green.min.css">
       <DependentUpon>skin-green.css</DependentUpon>
     </Content>
+    <Content Include="Content\AdminLTE\plugins\toastr\toastr.js" />
+    <Content Include="Content\App.js" />
     <Content Include="Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
@@ -1161,37 +1163,6 @@
     <Content Include="Content\AdminLTE\less\timeline.less" />
     <Content Include="Content\AdminLTE\less\users-list.less" />
     <Content Include="Content\AdminLTE\less\variables.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\alerts.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\background-variant.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\border-radius.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\buttons.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\center-block.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\clearfix.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\forms.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\gradients.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\grid-framework.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\grid.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\hide-text.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\image.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\labels.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\list-group.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\nav-divider.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\nav-vertical-align.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\opacity.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\pagination.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\panels.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\progress-bar.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\reset-filter.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\resize.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\responsive-visibility.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\size.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\tab-focus.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\table-row.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\text-emphasis.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\text-overflow.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\mixins\vendor-prefixes.less" />
-    <Content Include="Content\AdminLTE\bootstrap-less\variables.less" />
     <Content Include="Content\bootstrap\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\bootstrap\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\bootstrap\fonts\fontawesome-webfont.woff" />
@@ -1201,6 +1172,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\AdminLTE\less\toastr.less" />
     <None Include="Content\jQuery\jquery-1.9.1.intellisense.js" />
     <Content Include="Content\bootstrap\bootstrap.js" />
     <Content Include="Content\jQuery\jquery-1.9.1.js" />

@@ -45,11 +45,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/Content/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <script src="~/Content/bootstrap/bootstrap.js"></script>
     <script src="~/Content/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/AdminLTE/plugins/toastr/toastr.js"></script>
     <script src="~/Content/AdminLTE/app.js"></script>
+    <script src="~/Content/App.js"></script>
     <script src="~/Content/ko/knockout-3.3.0.js"></script>
     <script src="~/Content/ko/knockout.mapping-latest.js"></script>
     <script type="text/javascript">
         $(function () {
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "300",
+                "timeOut": "10000",
+                "extendedTimeOut": "10000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
             function LoginBox() {
                 var self = this;
 
@@ -57,27 +78,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 self.Password = ko.observable();
                 self.RememberMe = ko.observable(true);
 
-                self.Login = function() {
-                    var params = ko.toJSON(self);
-                    //window.alert(params);
-                    $.ajax({
-                        type: "POST",
-                        url: '@Url.Action("Login", "Account")',
-                        data: params,
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-                            if (data.success === true) {
+                self.Login = function () {
+                    window.Ultra.postJson('@Url.Action("Login", "Account")', {
+                            Email: self.Email(),
+                            Password: self.Password(),
+                            RememberMe: self.RememberMe()
+                        })
+                        .success(function (data) {
+                            if (data.success) {
                                 location.reload();
                             } else {
-                                alert("coś jest nie tak");
+                                toastr.error("Nieprawidłowy adres e-mail lub hasło");
                             }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            //500, 404?
-                            alert(jqXHR + " " + textStatus + " " + errorThrown);
-                        }
-                    });
+
+                        });
                 }
 
             };
