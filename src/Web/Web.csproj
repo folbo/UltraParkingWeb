@@ -229,6 +229,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\ParkingController.cs" />
+    <Compile Include="Controllers\ParkingListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -994,6 +995,7 @@
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\ko\bindings\knockout-repeat.js" />
     <Content Include="Content\ko\knockout-3.3.0.js" />
     <Content Include="Content\ko\knockout.mapping-latest.js" />
     <Content Include="Content\Site.css">
@@ -1218,10 +1220,10 @@
     <Content Include="Views\Shared\Layout\_Header.cshtml" />
     <Content Include="Views\Shared\Layout\_Menu.cshtml" />
     <Content Include="Views\Shared\Layout\_UserPanel.cshtml" />
+    <Content Include="Views\ParkingList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\ko\bindings\" />
     <Folder Include="Views\Parking\" />
   </ItemGroup>
   <ItemGroup>

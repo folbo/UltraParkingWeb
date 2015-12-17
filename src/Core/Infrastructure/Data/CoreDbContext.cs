@@ -13,10 +13,16 @@ namespace Ultra.Core.Infrastructure.Data
             Database.SetInitializer<CoreDbContext>(new MigrateDatabaseToLatestVersion<CoreDbContext, CoreDbConfiguration>());
         }
 
-        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Parking> Parkings { get; set; }
+        public virtual DbSet<Place> Places { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Place>()
+            //        .HasRequired<Parking>(s => s.Parking)
+            //        .WithMany(s => s.Places)
+            //        .HasForeignKey(s => s.Parking_Id);
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,0 +1,147 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .mock-parking {
+        background: #00aa00;
+        height: 40px;
+        border: solid 1px #003300;
+    }
+    .parking-list-item {
+        background: #fafafa;
+        min-height: 40px;
+    }
+    .place-item {
+        color: gray;
+        width: 25px;
+        height: 25px;
+        margin: 2px 2px 2px 2px;
+        border: 1px black;
+    }
+</style>
+
+<h2>Index</h2>
+<div id="parking-list">
+    <button data-bind="click: startCreating" class="btn">Create</button>
+
+    <div class="mock-parking" data-bind="visible: creating">
+        <input type="text" data-bind="value: crName" placeholder="Nazwa parkingu"/>
+        <span style="float: right">
+            <button data-bind="click: create" class="btn">Stwórz</button>
+            <button data-bind="click: cancelCreating" class="btn">Anuluj</button>
+        </span>
+    </div>
+
+    <div data-bind="foreach: parkings">
+        <div class="parking-list-item">
+            <span data-bind="text: Name"></span>
+            <span data-bind="text: TotalPlaces"></span>
+            <span data-bind="visible: $parent.expandedId() == Id()">
+                <input type="text" data-bind="value: $parent.edPlaces"/><button data-bind="click: $parent.addPlaces" class="btn">Doda   j miejsca</button>
+            </span>
+
+            <span style="float: right">
+                <button data-bind="click: $parent.expand" class="btn">Otwórz</button>
+                <button>Edytuj</button>
+                <button>Usuń</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Content/ko/bindings/knockout-repeat.js"></script>
+
+    <script>
+        function ParkingsViewModel(json,urls) {
+            var self = this;
+
+
+//            var mapping = {
+//                'children': {
+//                    key: function (data) {
+//                        return ko.utils.unwrapObservable(data.id);
+//                    }
+//                }
+//            }
+//            ko.mapping.fromJS({ parkings:json}, mapping, self);
+
+
+            //fields
+            self.parkings = ko.observableArray([]);
+            self.creating = ko.observable(false);
+            self.crName = ko.observable();
+            self.expandedId = ko.observable(0);
+            self.edPlaces = ko.observable();
+
+            //methods
+            self.getParkings = function() {
+                $.getJSON("ParkingList/GetParkings", function(response) {
+                    var data = $.parseJSON(response);
+                    var mappedParkings = $.map(data, function(item) {
+                        return new Parking(item);
+                    });
+
+                    self.parkings(mappedParkings);
+                });
+            }
+
+            self.getParkings();
+
+            self.startCreating = function() {
+                self.creating(true);
+            }
+
+            self.cancelCreating = function() {
+                self.creating(false);
+            }
+
+            self.create = function() {
+                var newParking = new Parking({ Name: self.crName(), TotalPlaces: 0 });
+
+                Ultra.postJson(urls.createParking, ko.toJSON(newParking), "Parking dodany")
+                    .success(function (response) {
+                        self.parkings.push(new Parking(response)); //todo poprawić return akcji 
+                    });
+            }
+
+            self.expand = function(parking) {
+                self.expandedId(parking.Id());
+                console.log(self.expandedId());
+                $.ajax("Parking/", {
+                    type: "POST",
+                    data: { id: self.expandedId() },
+                    success: function(response) {
+                        var data = $.parseJSON(response);
+                        //extra content
+                    }
+                });
+            }
+
+            self.addPlaces = function(parking) {
+                $.ajax("Parking/AddPlaces", {
+                    type: "POST",
+                    data: { id: parking.Id(), amount: self.edPlaces(), beginFrom: 0 },
+                    success: function(response) {
+                        self.expand(parking);
+                    }
+                });
+
+            }
+        }
+
+        function Parking(p) {
+            var self = this;
+
+            self.Name = ko.observable(p.Name);
+            self.TotalPlaces = ko.observable(p.TotalPlaces);
+            self.Id = ko.observable(p.Id);
+        }
+
+        ko.applyBindings(new ParkingsViewModel(), document.getElementById("parking-list"));
+    </script>
+}

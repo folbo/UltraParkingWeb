@@ -3,39 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Ultra.Core.Domain.Commands;
+using Ultra.Core.Domain.Queries;
 using Ultra.Web.Helpers;
+using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web.Controllers
 {
     //todo
-    [pAuthorize(Role = Roles.ParkingOwner)]
-    public class ParkingController : Controller
+    //[pAuthorize(Role = Roles.ParkingOwner)]
+    public class ParkingController : BaseController
     {
-        // GET: Parking
-        public ActionResult Index()
+        public ActionResult Index(Guid id)
         {
-            return View();
+            var places = Please.Give(new PlacesForParking(id)).ToList();
+            var count = places.Count;
+            return Json(JsonConvert.SerializeObject(count));
         }
 
-        public ActionResult Create()
+        public ActionResult GetPlaces(Guid id)
         {
-            return View();
+            var places = Please.Give(new PlacesForParking(id)).ToList();
+            return Json(JsonConvert.SerializeObject(places));
         }
 
-        public ActionResult Delete()
+        public ActionResult AddPlaces(AddPlacesModel model)
         {
-            return View();
+            Please.Do(new AddPlaces(model.Id, model.Amount, model.BeginFrom));
+            return Content("ok");
         }
+    }
 
-        public ActionResult SetPlaceStatus(PlaceStatus status)
-        {
-            return View();
-        }
-
-        public ActionResult ReservePlace()
-        {
-            return View();
-        }
+    public class AddPlacesModel
+    {
+        public int Amount { get; set; }
+        public int BeginFrom { get; set; }
+        public Guid Id { get; set; }
     }
 
     public enum PlaceStatus
