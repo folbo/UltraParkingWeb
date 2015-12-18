@@ -1,33 +1,40 @@
-﻿
+﻿@model string
 
 @{
     ViewBag.Title = "Index";
 }
 
 <style>
-    .mock-parking {
-        background: #00aa00;
-        height: 40px;
+    .mock-parking-item {
+        background: #bababa;
+        margin-bottom: 2px;
+        position: relative;
+        padding: 2px;
         border: solid 1px #003300;
     }
     .parking-list-item {
-        background: #fafafa;
-        min-height: 40px;
+        background: #bababa;
+        margin-bottom: 2px;
+        position: relative;
+        padding: 2px;
     }
-    .place-item {
-        color: gray;
-        width: 25px;
-        height: 25px;
-        margin: 2px 2px 2px 2px;
-        border: 1px black;
+    .parking-list-item .title-bar {
+        min-height: 35px;
+    }
+    .expanded-content {
+    }
+    .expanded-map {
+        width: 300px;
+        height: 300px;
+        background: #ffffff;
     }
 </style>
 
 <h2>Index</h2>
 <div id="parking-list">
-    <button data-bind="click: startCreating" class="btn">Create</button>
+    <button data-bind="click: startCreating" class="btn btn-info">Create</button>
 
-    <div class="mock-parking" data-bind="visible: creating">
+    <div class="mock-parking-item" data-bind="visible: creating">
         <input type="text" data-bind="value: crName" placeholder="Nazwa parkingu"/>
         <span style="float: right">
             <button data-bind="click: create" class="btn">Stwórz</button>
@@ -37,17 +44,21 @@
 
     <div data-bind="foreach: parkings">
         <div class="parking-list-item">
-            <span data-bind="text: Name"></span>
-            <span data-bind="text: TotalPlaces"></span>
-            <span data-bind="visible: $parent.expandedId() == Id()">
-                <input type="text" data-bind="value: $parent.edPlaces"/><button data-bind="click: $parent.addPlaces" class="btn">Doda   j miejsca</button>
-            </span>
-
-            <span style="float: right">
-                <button data-bind="click: $parent.expand" class="btn">Otwórz</button>
-                <button>Edytuj</button>
-                <button>Usuń</button>
-            </span>
+            <div class="title-bar">
+                <span data-bind="text: Name"></span>
+                <a href="#" data-bind="click: $parent.expandedId() != Id() ? $parent.expand : $parent.collapse"><i data-bind="css: {'fa-chevron-circle-down': $parent.expandedId() != Id(), 'fa-chevron-circle-up': $parent.expandedId() == Id() }" class="fa" style="font-size: 22px"></i></a>
+                <span style="float: right">
+                    <button class="btn">Edytuj</button>
+                    <button class="btn">Usuń</button>
+                </span>
+            </div>
+            <div class="expanded-content" data-bind="visible: $parent.expandedId() == Id()">
+                Wszystkich miejsc: <span data-bind="text: TotalPlaces"></span>
+                <input type="text" data-bind="value: $parent.edPlaces"/><button data-bind="click: $parent.resizeParking" class="btn">Updatuj</button>
+                <div class="expanded-map">
+                    mapa
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -57,41 +68,17 @@
     <script src="~/Content/ko/bindings/knockout-repeat.js"></script>
 
     <script>
-        function ParkingsViewModel(json,urls) {
+        ParkingsViewModel = function (json, urls) {
             var self = this;
 
-
-//            var mapping = {
-//                'children': {
-//                    key: function (data) {
-//                        return ko.utils.unwrapObservable(data.id);
-//                    }
-//                }
-//            }
-//            ko.mapping.fromJS({ parkings:json}, mapping, self);
-
-
             //fields
-            self.parkings = ko.observableArray([]);
+            self.parkings = ko.observableArray(json.parkings);
             self.creating = ko.observable(false);
             self.crName = ko.observable();
             self.expandedId = ko.observable(0);
             self.edPlaces = ko.observable();
 
             //methods
-            self.getParkings = function() {
-                $.getJSON("ParkingList/GetParkings", function(response) {
-                    var data = $.parseJSON(response);
-                    var mappedParkings = $.map(data, function(item) {
-                        return new Parking(item);
-                    });
-
-                    self.parkings(mappedParkings);
-                });
-            }
-
-            self.getParkings();
-
             self.startCreating = function() {
                 self.creating(true);
             }
@@ -102,35 +89,27 @@
 
             self.create = function() {
                 var newParking = new Parking({ Name: self.crName(), TotalPlaces: 0 });
-
-                Ultra.postJson(urls.createParking, ko.toJSON(newParking), "Parking dodany")
-                    .success(function (response) {
-                        self.parkings.push(new Parking(response)); //todo poprawić return akcji 
+                console.log(ko.toJSON(newParking));
+                Ultra.postJson(urls.createParking, ko.toJS(newParking), "Parking dodany")
+                    .success(function(response) {
+                        self.parkings.push(new Parking(response));
                     });
             }
 
             self.expand = function(parking) {
                 self.expandedId(parking.Id());
-                console.log(self.expandedId());
-                $.ajax("Parking/", {
-                    type: "POST",
-                    data: { id: self.expandedId() },
-                    success: function(response) {
-                        var data = $.parseJSON(response);
-                        //extra content
-                    }
-                });
             }
 
-            self.addPlaces = function(parking) {
-                $.ajax("Parking/AddPlaces", {
-                    type: "POST",
-                    data: { id: parking.Id(), amount: self.edPlaces(), beginFrom: 0 },
-                    success: function(response) {
-                        self.expand(parking);
-                    }
-                });
+            self.collapse = function() {
+                self.expandedId(0);
+            }
 
+            self.resizeParking = function(parking) {
+                Ultra.postJson(urls.resizeParking, { id: parking.Id(), amount: self.edPlaces() }, "Miejsca dodane")
+                    .success(function(response) {
+                        var data = $.parseJSON(response);
+                        parking.TotalPlaces(data.Amount);
+                    });
             }
         }
 
@@ -142,6 +121,16 @@
             self.Id = ko.observable(p.Id);
         }
 
-        ko.applyBindings(new ParkingsViewModel(), document.getElementById("parking-list"));
+        var urls = {
+            createParking: "/ParkingList/CreateParking",
+            resizeParking: "/ParkingList/ResizeParking"
+        }
+
+        //zrob observable z pól Parkingu
+        var mappedParkings = $.map(@Html.Raw(@Model), function(item) {
+            return new Parking(item);
+        });
+
+        ko.applyBindings(new ParkingsViewModel({parkings: mappedParkings}, urls), document.getElementById("parking-list"));
     </script>
 }

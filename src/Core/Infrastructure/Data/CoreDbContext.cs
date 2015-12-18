@@ -33,7 +33,6 @@ namespace Ultra.Core.Infrastructure.Data
         {
             AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
-            
         }
     }
 

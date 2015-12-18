@@ -14,11 +14,6 @@ namespace Ultra.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult GetParkings()
-        {
             var model = Please.Give(new AllParkings()).Select(parking => new ParkingListItem()
             {
                 Id = parking.Id,
@@ -26,13 +21,22 @@ namespace Ultra.Web.Controllers
                 TotalPlaces = parking.TotalPlaces
             }).ToList();
 
-            return Json(JsonConvert.SerializeObject(model), JsonRequestBehavior.AllowGet);
+            var r = JsonConvert.SerializeObject(model);
+            return View((object)r);
         }
 
         public ActionResult CreateParking(CreateParkingModel model)
         {
-            Please.Do(new CreateParking(model.Name));
-            return Content("ok");
+            var id = Guid.NewGuid();
+            Please.Do(new CreateParkingKnownId(id, model.Name));
+            var parking = Please.Give(new GetParkingById(id));
+            return Json(parking);
+        }
+
+        public ActionResult ResizeParking(ResizeParkingModel model)
+        {
+            Please.Do(new ResizeParking(model.Id, model.Amount));
+            return Json(JsonConvert.SerializeObject(model));
         }
     }
 
@@ -46,5 +50,11 @@ namespace Ultra.Web.Controllers
     public class CreateParkingModel
     {
         public string Name { get; set; }
+    }
+
+    public class ResizeParkingModel
+    {
+        public int Amount { get; set; }
+        public Guid Id { get; set; }
     }
 }

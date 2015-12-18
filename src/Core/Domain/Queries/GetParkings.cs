@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Ultra.Core.Domain.Entities;
 using Ultra.Core.Infrastructure.Queries;

@@ -17,30 +17,11 @@ namespace Ultra.Web.Controllers
     {
         public ActionResult Index(Guid id)
         {
-            var places = Please.Give(new PlacesForParking(id)).ToList();
-            var count = places.Count;
-            return Json(JsonConvert.SerializeObject(count));
-        }
-
-        public ActionResult GetPlaces(Guid id)
-        {
-            var places = Please.Give(new PlacesForParking(id)).ToList();
-            return Json(JsonConvert.SerializeObject(places));
-        }
-
-        public ActionResult AddPlaces(AddPlacesModel model)
-        {
-            Please.Do(new AddPlaces(model.Id, model.Amount, model.BeginFrom));
-            return Content("ok");
+            return Json("ok");
         }
     }
 
-    public class AddPlacesModel
-    {
-        public int Amount { get; set; }
-        public int BeginFrom { get; set; }
-        public Guid Id { get; set; }
-    }
+    
 
     public enum PlaceStatus
     {
