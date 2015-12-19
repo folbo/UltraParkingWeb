@@ -9,10 +9,14 @@ namespace Ultra.Core.Domain.Entities
 {
     public class Payment : Entity
     {
-        public virtual DateTime StartTime { get; set; }
-        public virtual DateTime EndTime { get; set; }
-        public virtual decimal Price { get; set; }
-        public virtual Place ParkingSpot { get; set; }
-        public virtual Parking Parking { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public decimal Price { get; set; }
+        public Guid ParkingPlaceId { get; set; }
+        public Guid ParkingId { get; set; }
+        public string CarId { get; set; }
+        public string FullName { get; set; }
+        public string Name { get; set; }
+
     }
 }

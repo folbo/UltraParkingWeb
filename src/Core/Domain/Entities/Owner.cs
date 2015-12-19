@@ -9,7 +9,6 @@ namespace Ultra.Core.Domain.Entities
 {
     public class Owner : Entity
     {
-        public virtual string Name { get; set; }
-        public virtual IList<Parking> Parkings { get; set; } 
+        public string Name { get; set; }
     }
 }

@@ -19,9 +19,5 @@ namespace Ultra.Core.Domain.Entities
         /// rejestracja samochodowa
         /// </summary>
         public virtual string CarId { get; set; }
-        /// <summary>
-        /// lista płatności
-        /// </summary>
-        public virtual IList<Payment> Payments { get; set; }
     }
 }

@@ -69,7 +69,6 @@
     <Compile Include="Domain\Entities\Parking.cs" />
     <Compile Include="Domain\Entities\Payment.cs" />
     <Compile Include="Domain\Entities\Place.cs" />
-    <Compile Include="Domain\Entities\Project.cs" />
     <Compile Include="Domain\Queries\GetNews.cs" />
     <Compile Include="Infrastructure\Base.cs" />
     <Compile Include="Infrastructure\Commands\CommandBus.cs" />

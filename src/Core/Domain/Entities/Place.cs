@@ -9,9 +9,11 @@ namespace Ultra.Core.Domain.Entities
 {
     public class Place : Entity
     {
-        public virtual Status Status { get; set; }
-        public virtual DateTime StartTime { get; set; }
-        public virtual Driver Driver { get; set; }
+        public Status Status { get; set; }
+        public DateTime? StartTime { get; set; }
+        public Guid DriverId { get; set; }
+        public Guid ParkingId { get; set; }
+        public virtual Parking Parking { get; set; }
     }
 
     public enum Status
