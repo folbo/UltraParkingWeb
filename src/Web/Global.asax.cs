@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Ultra.Core.Mappings;
 using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web
@@ -22,6 +23,8 @@ namespace Ultra.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory(container));
+
+            DTOMappings.Register();
         }
     }
 }
