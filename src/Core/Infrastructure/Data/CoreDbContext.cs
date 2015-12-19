@@ -1,14 +1,14 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using Ultra.Core.Domain.Entities;
 
 namespace Ultra.Core.Infrastructure.Data
 {
     public class CoreDbContext : DbContext
     {
-        public CoreDbContext(string connectionString)
-            : base(connectionString)
+        public CoreDbContext() : base(IoC.Resolve<CoreDbContextConnectionString>().ConnectionString)
         {
             Database.SetInitializer<CoreDbContext>(new MigrateDatabaseToLatestVersion<CoreDbContext, CoreDbConfiguration>());
         }
@@ -27,20 +27,22 @@ namespace Ultra.Core.Infrastructure.Data
         }
     }
 
+    public class CoreDbContextConnectionString
+    {
+        public CoreDbContextConnectionString(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
+
+        public string ConnectionString { get; }
+    }
+
     public class CoreDbConfiguration : DbMigrationsConfiguration<CoreDbContext>
     {
         public CoreDbConfiguration()
         {
             AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
-        }
-    }
-
-    public class MigrationsContextFactory : IDbContextFactory<CoreDbContext>
-    {
-        public CoreDbContext Create()
-        {
-            return IoC.Resolve<CoreDbContext>();
         }
     }
 }

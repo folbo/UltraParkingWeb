@@ -16,16 +16,19 @@ namespace Ultra.Web.Installers
                 Classes
                     .FromAssemblyInThisApplication()
                     .BasedOn(typeof(ICommandHandler<>))
+                    .LifestyleTransient()
                     .WithServiceBase(),
 
                 Classes
                     .FromAssemblyInThisApplication()
                     .BasedOn(typeof(IEvent<>))
+                    .LifestyleTransient()
                     .WithServiceBase(),
 
                 Classes
                     .FromAssemblyInThisApplication()
                     .BasedOn(typeof(IQueryPerformer<,>))
+                    .LifestyleTransient()
                     .WithServiceBase(),
 
                 Component.For<ICommandBus>().ImplementedBy<CommandBus>(),

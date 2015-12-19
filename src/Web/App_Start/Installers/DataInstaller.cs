@@ -10,10 +10,12 @@ namespace Ultra.Web.Installers
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-               Component.For<CoreDbContext>().ImplementedBy<CoreDbContext>()
+               Component.For<CoreDbContextConnectionString>()
                .DependsOn(Dependency.OnValue("connectionString", System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
-               .LifestyleTransient()
-           );
+               .LifestyleTransient(),
+               Component.For<CoreDbContext>()
+               .LifestylePerWebRequest()
+               );
         }
     }
 }
