@@ -13,7 +13,7 @@ namespace Ultra.Core.Infrastructure.Data
             Database.SetInitializer<CoreDbContext>(new MigrateDatabaseToLatestVersion<CoreDbContext, CoreDbConfiguration>());
         }
 
-        public virtual DbSet<Project> Projects { get; set; }
+        //public virtual DbSet<Project> Projects { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
