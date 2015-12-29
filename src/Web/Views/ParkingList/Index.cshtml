@@ -1,0 +1,136 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .mock-parking-item {
+        background: #bababa;
+        margin-bottom: 2px;
+        position: relative;
+        padding: 2px;
+        border: solid 1px #003300;
+    }
+    .parking-list-item {
+        background: #bababa;
+        margin-bottom: 2px;
+        position: relative;
+        padding: 2px;
+    }
+    .parking-list-item .title-bar {
+        min-height: 35px;
+    }
+    .expanded-content {
+    }
+    .expanded-map {
+        width: 300px;
+        height: 300px;
+        background: #ffffff;
+    }
+</style>
+
+<h2>Index</h2>
+<div id="parking-list">
+    <button data-bind="click: startCreating" class="btn btn-info">Create</button>
+
+    <div class="mock-parking-item" data-bind="visible: creating">
+        <input type="text" data-bind="value: crName" placeholder="Nazwa parkingu"/>
+        <span style="float: right">
+            <button data-bind="click: create" class="btn">Stwórz</button>
+            <button data-bind="click: cancelCreating" class="btn">Anuluj</button>
+        </span>
+    </div>
+
+    <div data-bind="foreach: parkings">
+        <div class="parking-list-item">
+            <div class="title-bar">
+                <span data-bind="text: Name"></span>
+                <a href="#" data-bind="click: $parent.expandedId() != Id() ? $parent.expand : $parent.collapse"><i data-bind="css: {'fa-chevron-circle-down': $parent.expandedId() != Id(), 'fa-chevron-circle-up': $parent.expandedId() == Id() }" class="fa" style="font-size: 22px"></i></a>
+                <span style="float: right">
+                    <button class="btn">Edytuj</button>
+                    <button class="btn">Usuń</button>
+                </span>
+            </div>
+            <div class="expanded-content" data-bind="visible: $parent.expandedId() == Id()">
+                Wszystkich miejsc: <span data-bind="text: TotalPlaces"></span>
+                <input type="text" data-bind="value: $parent.edPlaces"/><button data-bind="click: $parent.resizeParking" class="btn">Updatuj</button>
+                <div class="expanded-map">
+                    mapa
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Content/ko/bindings/knockout-repeat.js"></script>
+
+    <script>
+        ParkingsViewModel = function (json, urls) {
+            var self = this;
+
+            //fields
+            self.parkings = ko.observableArray(json.parkings);
+            self.creating = ko.observable(false);
+            self.crName = ko.observable();
+            self.expandedId = ko.observable(0);
+            self.edPlaces = ko.observable();
+
+            //methods
+            self.startCreating = function() {
+                self.creating(true);
+            }
+
+            self.cancelCreating = function() {
+                self.creating(false);
+            }
+
+            self.create = function() {
+                var newParking = new Parking({ Name: self.crName(), TotalPlaces: 0 });
+                console.log(ko.toJSON(newParking));
+                Ultra.postJson(urls.createParking, ko.toJS(newParking), "Parking dodany")
+                    .success(function(response) {
+                        self.parkings.push(new Parking(response));
+                    });
+            }
+
+            self.expand = function(parking) {
+                self.expandedId(parking.Id());
+            }
+
+            self.collapse = function() {
+                self.expandedId(0);
+            }
+
+            self.resizeParking = function(parking) {
+                Ultra.postJson(urls.resizeParking, { id: parking.Id(), amount: self.edPlaces() }, "Miejsca dodane")
+                    .success(function(response) {
+                        var data = $.parseJSON(response);
+                        parking.TotalPlaces(data.Amount);
+                    });
+            }
+        }
+
+        function Parking(p) {
+            var self = this;
+
+            self.Name = ko.observable(p.Name);
+            self.TotalPlaces = ko.observable(p.TotalPlaces);
+            self.Id = ko.observable(p.Id);
+        }
+
+        var urls = {
+            createParking: "/ParkingList/CreateParking",
+            resizeParking: "/ParkingList/ResizeParking"
+        }
+
+        //zrob observable z pól Parkingu
+        var mappedParkings = $.map(@Html.Raw(@Model), function(item) {
+            return new Parking(item);
+        });
+
+        ko.applyBindings(new ParkingsViewModel({parkings: mappedParkings}, urls), document.getElementById("parking-list"));
+    </script>
+}

@@ -3,40 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Ultra.Core.Domain.Commands;
+using Ultra.Core.Domain.Queries;
 using Ultra.Web.Helpers;
+using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web.Controllers
 {
     //todo
-    [pAuthorize(Role = Roles.ParkingOwner)]
-    public class ParkingController : Controller
+    //[pAuthorize(Role = Roles.ParkingOwner)]
+    public class ParkingController : BaseController
     {
-        // GET: Parking
-        public ActionResult Index()
+        public ActionResult Index(Guid id)
         {
-            return View();
-        }
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        public ActionResult Delete()
-        {
-            return View();
-        }
-
-        public ActionResult SetPlaceStatus(PlaceStatus status)
-        {
-            return View();
-        }
-
-        public ActionResult ReservePlace()
-        {
-            return View();
+            return Json("ok");
         }
     }
+
+    
 
     public enum PlaceStatus
     {
