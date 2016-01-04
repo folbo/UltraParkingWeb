@@ -6,14 +6,14 @@
 
 <style>
     .mock-parking-item {
-        background: #bababa;
-        margin-bottom: 2px;
+        background: #6ff379;
+        margin-bottom: 20px;
         position: relative;
         padding: 2px;
-        border: solid 1px #003300;
+        min-height: 235px;
     }
     .parking-list-item {
-        background: #bababa;
+        background: #3cb371;
         margin-bottom: 2px;
         position: relative;
         padding: 2px;
@@ -32,17 +32,9 @@
 
 <h2>Index</h2>
 <div id="parking-list">
-    <button data-bind="click: startCreating" class="btn btn-info">Create</button>
+    <button class="btn btn-info" data-target="#myModal" data-toggle="modal">Create</button>
 
-    <div class="mock-parking-item" data-bind="visible: creating">
-        <input type="text" data-bind="value: crName" placeholder="Nazwa parkingu"/>
-        <span style="float: right">
-            <button data-bind="click: create" class="btn">Stwórz</button>
-            <button data-bind="click: cancelCreating" class="btn">Anuluj</button>
-        </span>
-    </div>
-
-    <div data-bind="foreach: parkings">
+    <div style="margin-top: 20px" data-bind="foreach: parkings">
         <div class="parking-list-item">
             <div class="title-bar">
                 <span data-bind="text: Name"></span>
@@ -54,14 +46,37 @@
             </div>
             <div class="expanded-content" data-bind="visible: $parent.expandedId() == Id()">
                 Wszystkich miejsc: <span data-bind="text: TotalPlaces"></span>
-                <input type="text" data-bind="value: $parent.edPlaces"/><button data-bind="click: $parent.resizeParking" class="btn">Updatuj</button>
+                <input type="text" data-bind="value: $parent.edPlaces"/>
+                <button data-bind="click: $parent.resizeParking" class="btn">Updatuj</button>
                 <div class="expanded-map">
                     mapa
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    @*todo: binding knockouta działa tylko wewnątrz górnego diva, bo koliduje z logowaniem*@
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Nowy parking</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input type="text" data-bind="value: crName" placeholder="Nazwa parkingu"/>
+                        <input type="text"/>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: create">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 
 @section Scripts
 {
@@ -79,20 +94,15 @@
             self.edPlaces = ko.observable();
 
             //methods
-            self.startCreating = function() {
-                self.creating(true);
-            }
-
-            self.cancelCreating = function() {
-                self.creating(false);
-            }
-
             self.create = function() {
                 var newParking = new Parking({ Name: self.crName(), TotalPlaces: 0 });
+                self.creating(true);
                 console.log(ko.toJSON(newParking));
                 Ultra.postJson(urls.createParking, ko.toJS(newParking), "Parking dodany")
                     .success(function(response) {
                         self.parkings.push(new Parking(response));
+                        self.creating(false);
+                        document.location.reload();
                     });
             }
 
