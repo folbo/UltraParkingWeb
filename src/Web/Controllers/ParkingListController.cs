@@ -35,7 +35,7 @@ namespace Ultra.Web.Controllers
 
         public ActionResult ResizeParking(ResizeParkingModel model)
         {
-            Please.Do(new ResizeParking(model.Id, model.Amount));
+            Please.Do(new AddPlaces(model.Id, model.Amount, model.NamingPattern));
             return Json(JsonConvert.SerializeObject(model));
         }
     }
@@ -55,6 +55,7 @@ namespace Ultra.Web.Controllers
     public class ResizeParkingModel
     {
         public int Amount { get; set; }
+        public string NamingPattern { get; set; }
         public Guid Id { get; set; }
     }
 }

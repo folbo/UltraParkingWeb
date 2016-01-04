@@ -47,7 +47,7 @@
             <div class="expanded-content" data-bind="visible: $parent.expandedId() == Id()">
                 Wszystkich miejsc: <span data-bind="text: TotalPlaces"></span>
                 <input type="text" data-bind="value: $parent.edPlaces"/>
-                <button data-bind="click: $parent.resizeParking" class="btn">Updatuj</button>
+                @*<button data-bind="click: $parent.addPlacesArea" class="btn">Updatuj</button>*@
                 <div class="expanded-map">
                     mapa
                 </div>
@@ -65,9 +65,15 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <input type="text" data-bind="value: crName" placeholder="Nazwa parkingu"/>
-                        <input type="text"/>
+                        Nazwa parkingu: <input type="text" data-bind="value: crName"/>
                     </p>
+                    <ul data-bind="foreach: places">
+                        <li>
+                            Ilość: <span data-bind="text: Amount"></span>, pattern: <span data-bind="text: NamingPattern"></span>
+                        </li>
+                    </ul>
+                    ilość miejsc: <input type="text" data-bind="value: crPlacesAmount" />, pattern: <input type="text" data-bind="value: crNamingPattern" />
+                    <button data-bind="click: addPlacesArea">Dodaj miejsca</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -83,13 +89,18 @@
     <script src="~/Content/ko/bindings/knockout-repeat.js"></script>
 
     <script>
-        ParkingsViewModel = function (json, urls) {
+        ParkingsViewModel = function(json, urls) {
             var self = this;
 
             //fields
             self.parkings = ko.observableArray(json.parkings);
+
             self.creating = ko.observable(false);
             self.crName = ko.observable();
+            self.crPlacesAmount = ko.observable();
+            self.crNamingPattern = ko.observable();
+            self.places = ko.observableArray([]);
+
             self.expandedId = ko.observable(0);
             self.edPlaces = ko.observable();
 
@@ -114,12 +125,8 @@
                 self.expandedId(0);
             }
 
-            self.resizeParking = function(parking) {
-                Ultra.postJson(urls.resizeParking, { id: parking.Id(), amount: self.edPlaces() }, "Miejsca dodane")
-                    .success(function(response) {
-                        var data = $.parseJSON(response);
-                        parking.TotalPlaces(data.Amount);
-                    });
+            self.addPlacesArea = function() {
+                self.places.push(new PlacesArea({ Amount: self.crPlacesAmount(), NamingPattern: self.crNamingPattern() }));
             }
         }
 
@@ -129,6 +136,13 @@
             self.Name = ko.observable(p.Name);
             self.TotalPlaces = ko.observable(p.TotalPlaces);
             self.Id = ko.observable(p.Id);
+        }
+
+        function PlacesArea(p) {
+            var self = this;
+
+            self.NamingPattern = ko.observable(p.NamingPattern);
+            self.Amount = ko.observable(p.Amount);
         }
 
         var urls = {

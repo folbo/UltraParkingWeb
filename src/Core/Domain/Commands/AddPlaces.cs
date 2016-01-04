@@ -10,21 +10,23 @@ using Ultra.Core.Infrastructure.Commands;
 
 namespace Ultra.Core.Domain.Commands
 {
-    public class ResizeParking : ICommand
+    public class AddPlaces : ICommand
     {
-        public ResizeParking(Guid parkingId, int amount)
+        public AddPlaces(Guid parkingId, int amount, string namingPattern)
         {
             ParkingId = parkingId;
             Amount = amount;
+            NamingPattern = namingPattern;
         }
 
         public Guid ParkingId;
         public int Amount;
+        public string NamingPattern;
     }
 
-    public class ResizeParkingCommandHandler : CommandHandler<ResizeParking>
+    public class AddPlacesCommandHandler : CommandHandler<AddPlaces>
     {
-        public override void Execute(ResizeParking command)
+        public override void Execute(AddPlaces command)
         {
             var parking = Data.Parkings.Single(x => x.Id == command.ParkingId);
             parking.TotalPlaces = command.Amount;
