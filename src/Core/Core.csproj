@@ -61,7 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Commands\ResizeParking.cs" />
+    <Compile Include="Domain\Commands\AddMassPlaces.cs" />
+    <Compile Include="Domain\Commands\AddPlaces.cs" />
     <Compile Include="Domain\Commands\CreateParking.cs" />
     <Compile Include="Domain\Commands\DeleteProject.cs" />
     <Compile Include="Domain\Commands\EditProject.cs" />
