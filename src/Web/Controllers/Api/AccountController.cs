@@ -134,10 +134,9 @@ namespace Ultra.Web.Controllers.Api
         /// </summary>
         /// <response code="200"></response >
         [HttpPost]
-        [ResponseType(typeof(void))]
         [AllowAnonymous]
         [Route("logoff")]
-        [SwaggerResponse(HttpStatusCode.OK)]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof (void))]
         public HttpResponseMessage LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

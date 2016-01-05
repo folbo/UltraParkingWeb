@@ -65,12 +65,16 @@
     <Compile Include="Domain\Commands\CreateParking.cs" />
     <Compile Include="Domain\Commands\DeleteProject.cs" />
     <Compile Include="Domain\Commands\EditProject.cs" />
+    <Compile Include="Domain\DTO\ParkingDTO.cs" />
     <Compile Include="Domain\Entities\Driver.cs" />
     <Compile Include="Domain\Entities\Owner.cs" />
     <Compile Include="Domain\Entities\Parking.cs" />
     <Compile Include="Domain\Entities\Payment.cs" />
     <Compile Include="Domain\Entities\Place.cs" />
+    <Compile Include="Domain\Queries\API\GetParkingsInArea.cs" />
     <Compile Include="Domain\Queries\GetNews.cs" />
+    <Compile Include="Domain\Queries\API\GetParkingById.cs" />
+    <Compile Include="Domain\Queries\API\GetParkings.cs" />
     <Compile Include="Domain\Queries\GetParkingById.cs" />
     <Compile Include="Domain\Queries\GetParkings.cs" />
     <Compile Include="Domain\Queries\GetPlaces.cs" />
