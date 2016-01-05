@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using Ultra.Core.Domain.Commands;
+using Ultra.Core.Domain.Entities;
 using Ultra.Core.Domain.Queries;
 using Ultra.Web.Infrastructure;
 
@@ -27,8 +28,16 @@ namespace Ultra.Web.Controllers
 
         public ActionResult CreateParking(CreateParkingModel model)
         {
+            //dodaj parking
             var id = Guid.NewGuid();
             Please.Do(new CreateParkingKnownId(id, model.Name));
+
+            //dodaj miejsca
+            foreach (var area in model.PlacesAreas)
+            {
+                Please.Do(new AddMassPlaces(id, area.NamePrefix, area.NameSuffix, area.StartNumber, area.Amount));
+            }
+
             var parking = Please.Give(new GetParkingById(id));
             return Json(parking);
         }
@@ -49,7 +58,16 @@ namespace Ultra.Web.Controllers
 
     public class CreateParkingModel
     {
+        public class PlacesArea
+        {
+            public string NamePrefix { get; set; }
+            public string NameSuffix { get; set; }
+            public int Amount { get; set; }
+            public int StartNumber { get; set; }
+        }
+
         public string Name { get; set; }
+        public List<PlacesArea> PlacesAreas { get; set; }
     }
 
     public class ResizeParkingModel

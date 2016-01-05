@@ -14,6 +14,10 @@ namespace Ultra.Core.Domain.Entities
         public Guid DriverId { get; set; }
         public Guid ParkingId { get; set; }
         public virtual Parking Parking { get; set; }
+
+        public string NamePrefix { get; set; }
+        public string NameMainPattern { get; set; }
+        public string NameSuffix { get; set; }
     }
 
     public enum Status
