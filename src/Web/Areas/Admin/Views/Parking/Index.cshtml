@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Ultra.Core.Domain.ViewModels.ParkingInfoVM>
+
+@{
+    ViewBag.Title = "Zarządzaj parkingami";
+}
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <h2>
+            Parkingi
+            <button class="btn btn-success btn-flat pull-right" data-target="#myModal" data-toggle="modal"><i class="fa fa-plus"></i>Dodaj</button>
+        </h2>
+
+
+    </div>
+
+    <div class="box-body no-padding">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th>
+                    Właściciel
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnerName)
+                    </td>
+                    <td class="text-right">
+                        <a class="btn btn-flat bg-aqua" href="@Url.Action("Edit",new {item.Id})"><i class="fa fa-edit"></i> Edytuj</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+    @*create modal*@
+
+    <form method="POST" action="@Url.Action("Create")">
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Nowy parking</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="new-parking-name">Nazwa parkingu:</label>
+                            <input type="text" class="form-control" name="Name" id="new-parking-name" placeholder="Nazwa parkingu" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>

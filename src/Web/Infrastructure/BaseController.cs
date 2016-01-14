@@ -12,5 +12,10 @@ namespace Ultra.Web.Infrastructure
         }
 
         protected IAssistant Please { get; set; }
+
+        protected ActionResult JsonOk()
+        {
+            return Json("ok");
+        }
     }
 }

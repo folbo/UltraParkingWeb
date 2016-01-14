@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>@ViewBag.Title</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap3-editable/css/bootstrap-editable.css">
     <link rel="stylesheet" href="~/Content/fontawesome4/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-green.min.css">
@@ -31,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <div class="content-wrapper">
             <!-- Main content -->
-            <section class="content">
+            <section class="content" id="page-content">
                 @RenderBody()
             </section>
         </div>
@@ -50,6 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/Content/App.js"></script>
     <script src="~/Content/ko/knockout-3.3.0.js"></script>
     <script src="~/Content/ko/knockout.mapping-latest.js"></script>
+    <script src="~/Content/Bootbox/bootbox.min.js"></script>
     <script type="text/javascript">
         $(function () {
 

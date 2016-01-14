@@ -206,26 +206,25 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ParkingController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\ParkingController.cs" />
     <Compile Include="Controllers\Api\TestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MeController.cs" />
-    <Compile Include="Controllers\ParkingController.cs" />
-    <Compile Include="Controllers\ParkingListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\pAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\BaseApiController.cs" />
     <Compile Include="Infrastructure\BaseController.cs" />
+    <Compile Include="Infrastructure\Helpers.cs" />
     <Compile Include="Infrastructure\IoCControllerFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MeViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -247,6 +246,12 @@
     </Content>
     <Content Include="Content\AdminLTE\plugins\toastr\toastr.js" />
     <Content Include="Content\App.js" />
+    <Content Include="Content\Bootbox\bootbox.min.js" />
+    <Content Include="Content\bootstrap3-editable\css\bootstrap-editable.css" />
+    <Content Include="Content\bootstrap3-editable\img\clear.png" />
+    <Content Include="Content\bootstrap3-editable\img\loading.gif" />
+    <Content Include="Content\bootstrap3-editable\js\bootstrap-editable.js" />
+    <Content Include="Content\bootstrap3-editable\js\bootstrap-editable.min.js" />
     <Content Include="Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
@@ -980,6 +985,7 @@
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Content\ko\bindings\knockout-repeat.js" />
+    <Content Include="Content\ko\bindings\knockout.x-editable.js" />
     <Content Include="Content\ko\knockout-3.3.0.js" />
     <Content Include="Content\ko\knockout.mapping-latest.js" />
     <Content Include="Content\Site.css">
@@ -1140,10 +1146,15 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\AdminLTE\less\toastr.less" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Parking\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Parking\Edit.cshtml" />
     <None Include="Content\jQuery\jquery-1.9.1.intellisense.js" />
     <Content Include="Content\bootstrap\bootstrap.js" />
     <Content Include="Content\jQuery\jquery-1.9.1.js" />
     <Content Include="Content\jQuery\jquery-1.9.1.min.js" />
+    <Content Include="Content\ko\bindings\googlemapBinding.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -1185,11 +1196,10 @@
     <Content Include="Views\Shared\Layout\_Header.cshtml" />
     <Content Include="Views\Shared\Layout\_Menu.cshtml" />
     <Content Include="Views\Shared\Layout\_UserPanel.cshtml" />
-    <Content Include="Views\ParkingList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Parking\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

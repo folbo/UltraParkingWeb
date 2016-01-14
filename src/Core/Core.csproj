@@ -61,24 +61,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Commands\AddMassPlaces.cs" />
-    <Compile Include="Domain\Commands\AddPlaces.cs" />
-    <Compile Include="Domain\Commands\CreateParking.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\DeleteParking.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\AddParking.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\RemoveSegment.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\ResizeSegment.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\RenameSegment.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\AddSegment.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\UpdateParkingLocation.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\RenameParking.cs" />
     <Compile Include="Domain\Commands\DeleteProject.cs" />
     <Compile Include="Domain\Commands\EditProject.cs" />
     <Compile Include="Domain\DTO\ParkingDTO.cs" />
     <Compile Include="Domain\Entities\Driver.cs" />
     <Compile Include="Domain\Entities\Owner.cs" />
     <Compile Include="Domain\Entities\Parking.cs" />
+    <Compile Include="Domain\Entities\ParkingSegment.cs" />
     <Compile Include="Domain\Entities\Payment.cs" />
-    <Compile Include="Domain\Entities\Place.cs" />
+    <Compile Include="Domain\Entities\ParkingPlace.cs" />
+    <Compile Include="Domain\Queries\Admin\ParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkingsInArea.cs" />
-    <Compile Include="Domain\Queries\GetNews.cs" />
     <Compile Include="Domain\Queries\API\GetParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkings.cs" />
-    <Compile Include="Domain\Queries\GetParkingById.cs" />
-    <Compile Include="Domain\Queries\GetParkings.cs" />
-    <Compile Include="Domain\Queries\GetPlaces.cs" />
+    <Compile Include="Domain\Queries\Admin\AllParkings.cs" />
+    <Compile Include="Domain\Queries\ParkingAggregate.cs" />
+    <Compile Include="Domain\ViewModels\DriverVM.cs" />
+    <Compile Include="Domain\ViewModels\OwnerVM.cs" />
+    <Compile Include="Domain\ViewModels\ParkingInfoVM.cs" />
+    <Compile Include="Domain\ViewModels\ParkingSegmentVM.cs" />
+    <Compile Include="Domain\ViewModels\ParkingVM.cs" />
+    <Compile Include="Domain\ViewModels\PaymentVM.cs" />
+    <Compile Include="Domain\ViewModels\PlaceVM.cs" />
     <Compile Include="Infrastructure\Base.cs" />
     <Compile Include="Infrastructure\Commands\CommandBus.cs" />
     <Compile Include="Infrastructure\Commands\CommandHandler.cs" />
@@ -94,6 +106,7 @@
     <Compile Include="Infrastructure\Queries\IQueryBus.cs" />
     <Compile Include="Infrastructure\Queries\IQueryPerformer.cs" />
     <Compile Include="IoC.cs" />
+    <Compile Include="Mappings\VMMappings.cs" />
     <Compile Include="Mappings\DTOMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

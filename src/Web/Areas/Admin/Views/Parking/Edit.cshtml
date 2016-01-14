@@ -1,0 +1,229 @@
+﻿@using Ultra.Web.Infrastructure
+@model Ultra.Core.Domain.ViewModels.ParkingVM
+
+@{
+    ViewBag.Title = $"{Model.Name} - Edycja";
+}
+<div class="col-md-8">
+    <div class="box box-primary">
+        <div class="box-header">
+            Parking
+            <input type="button" value="Usuń" class="btn btn-flat btn-danger pull-right" data-bind="click:DeleteParking" />
+        </div>
+        <div class="box-body">
+
+            <div class="form-group">
+                <label for="parking-name">Nazwa</label>
+                <span type="text" id="parking-name" data-bind="editable:Name,editableOptions:{save:RenameParking}"></span>
+            </div>
+            <label>Segmenty parkingu</label>
+            <ul>
+
+                <li class="form-inline">
+                    <div class="form-group">
+                        <label>Nazwa</label>
+                        <span data-bind="editable:NewSegmentName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Miejsc: </label>
+                        <span data-bind="editable:NewSegmentPlacesCount,editableOptions:{type:'number',step:1,min:1}"></span>
+                    </div>
+                    <button class="btn btn-success btn-flat btn-xs" data-bind="click:AddSegment">Dodaj</button>
+                </li>
+                <!-- ko foreach:Segments-->
+                <li class="form-inline">
+                    <div class="form-group">
+                        <label>Nazwa</label>
+                        <span data-bind="editable:Name,editableOptions:{save:$data.RenameSegment}"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Miejsc: </label>
+                        <span data-bind="editable:PlacesCount,editableOptions:{save:$data.ResizeSegment,type:'number',step:1,min:1}"></span>
+                    </div>
+                    <button class="btn btn-danger btn-flat btn-xs" data-bind="click:$root.RemoveSegment">Usuń</button>
+
+                </li>
+                <!-- /ko-->
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-4">
+    <div class="box box-info">
+        <div class="box-header">Właściciel</div>
+        <div class="box-body">
+            <div class="form-group">
+                <h4>Todo kontrolka wybierania użytkownika</h4>
+                @*todo*@
+                @Html.LabelFor(model => model.OwnerId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.OwnerId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OwnerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.OwnerName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OwnerName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="box box-info">
+        <div class="box-header">
+            Lokalizacja
+            <input type="button" value="Zaktualizuj" class="btn btn-flat btn-info pull-right" data-bind="click:UpdateLocation" />
+        </div>
+        <div class="box-body">
+            <style>
+                .map {
+                    height: 400px;
+                }
+            </style>
+            <div class="map" data-bind="googlemap: { latitude: Latitude, longitude: Longitude }"></div>
+        </div>
+        <div class="box-footer">
+        </div>
+    </div>
+</div>
+
+
+@*---------------------------------------------------------------------------------*@
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.Id)
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-default"><i class="fa fa-backward"></i> Wróć do listy</a>
+</div>
+
+@section Scripts
+{
+
+
+    <script src="~/Content/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <script src="~/Content/ko/bindings/knockout.x-editable.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false&.js"></script>
+    <script src="~/Content/ko/bindings/googlemapBinding.js"></script>
+
+    <script>
+        function SegmentVM(json, parking) {
+            var self = this;
+            self.Parking = parking;
+
+            ko.mapping.fromJS(json, null, self);
+
+            self.RenameSegment = function(e, params) {
+                Ultra.postJson('@Url.Action("RenameSegment")', {
+                    ParkingId: self.Parking.Id(),
+                    SegmentId: self.Id(),
+                    NewName: params.newValue,
+                }, "Nazwa segmentu została zaktualizowana");
+            }
+
+            self.ResizeSegment = function(e, params) {
+                Ultra.postJson('@Url.Action("ResizeSegment")', {
+                    ParkingId: self.Parking.Id(),
+                    SegmentId: self.Id(),
+                    AmountPlaces: params.newValue,
+                }, "Segment został przeskalowany");
+            }
+        }
+
+        function ParkingVM(json) {
+            var self = this;
+
+            var mapperSettings = {
+                'Segments': {
+                    create: function(options) {
+                        return new SegmentVM(options.data, self);
+                    }
+                }
+            };
+            ko.mapping.fromJS(json, mapperSettings, this);
+
+            self.NewSegmentName = ko.observable();
+            self.NewSegmentPlacesCount = ko.observable(0);
+
+            self.AddSegment = function() {
+                Ultra.postJson('@Url.Action("AddSegment")', {
+                        ParkingId: self.Id(),
+                        Name: self.NewSegmentName(),
+                        AmountPlaces: self.NewSegmentPlacesCount(),
+                    }, "Segment został dodany")
+                    .success(function(data) {
+                        self.Segments.push(new SegmentVM({
+                            Id: data,
+                            Name: self.NewSegmentName(),
+                            PlacesCount: self.NewSegmentPlacesCount(),
+                        }, self));
+                        self.NewSegmentName("");
+                        self.NewSegmentPlacesCount(0);
+                    });
+            }
+
+            self.RemoveSegment = function (segment) {
+                Ultra.postJson('@Url.Action("RemoveSegment")', {
+                        ParkingId: self.Id(),
+                        SegmentId: segment.Id(),
+                    }, "Segment został usunięty")
+                    .success(function(data) {
+                        self.Segments.remove(segment);
+                    });
+            }
+
+            self.RenameParking = function(e, params) {
+                Ultra.postJson('@Url.Action("RenameParking")', {
+                    ParkingId: self.Id(),
+                    NewName: params.newValue,
+                }, "Nazwa parkingu została zmieniona");
+
+            }
+
+            self.UpdateLocation = function() {
+                Ultra.postJson('@Url.Action("UpdateLocation")', {
+                    ParkingId: self.Id(),
+                    Latitude: self.Latitude(),
+                    Longitude: self.Longitude(),
+                }, "Lokalizacja parkingu została zaktualizowana");
+            }
+
+            self.DeleteParking = function() {
+                bootbox.confirm({
+                    title: 'Usuwanie parkingu',
+                    message: 'Czy na pewno chcesz usunąć parking. Tej operacji nie da się odwrócić ',
+                    buttons: {
+                        'cancel': {
+                            label: 'Anuluj',
+                            className: 'btn-default pull-left'
+                        },
+                        'confirm': {
+                            label: 'Usuń',
+                            className: 'btn-danger pull-right'
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            Ultra.postJson('@Url.Action("DeleteParking")', {
+                                    ParkingId: self.Id(),
+                                })
+                                .success(function() {
+                                    window.location.href = "@Url.Action("Index")";
+                                });
+                        }
+                    }
+                });
+            }
+        }
+
+        var model = JSON.parse(@Html.ModelToJSon(Model));
+        ko.applyBindings(new ParkingVM(model), document.getElementById("page-content"));
+    </script>
+}
