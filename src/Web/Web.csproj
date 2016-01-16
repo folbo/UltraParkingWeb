@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\TestController.cs" />
+    <Compile Include="Controllers\CMDController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
@@ -1185,6 +1186,7 @@
     <Content Include="Views\Shared\Layout\_Menu.cshtml" />
     <Content Include="Views\Shared\Layout\_UserPanel.cshtml" />
     <Content Include="Views\ParkingList\Index.cshtml" />
+    <Content Include="Views\CMD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

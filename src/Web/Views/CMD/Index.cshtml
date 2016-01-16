@@ -1,0 +1,24 @@
+﻿@model Ultra.Web.Controllers.Dupamodel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <pre>
+@Model.response
+</pre>
+    <form method="post">
+        <textarea name="commad">@Model.command</textarea>
+        <input type="submit" value="Napierdalaj"/>
+    </form>
+</div>
+</body>
+</html>
