@@ -17,10 +17,14 @@ namespace Ultra.Core.Domain.Entities
         }
 
         public string Name { get; protected set; }
-        public int TotalPlaces { get; protected set; }
-        public int FreePlaces { get; protected set; }
+        public int TotalPlacesCount { get; protected set; }
+        public int FreePlacesCount { get; protected set; }
         public virtual ICollection<ParkingSegment> Segments { get; protected set; }
         public virtual IEnumerable<ParkingPlace> Places => Segments.SelectMany(s => s.Places);
+
+        public virtual IEnumerable<ParkingPlace> FreePlaces
+            => Segments.SelectMany(s => s.Places).Where(place => place.Status == Status.Free);
+
         public Guid OwnerId { get; protected set; }
         public DbGeography Location { get; protected set; }
 
@@ -37,8 +41,8 @@ namespace Ultra.Core.Domain.Entities
 
         internal void Update()
         {
-            TotalPlaces = Places.Count();
-            FreePlaces = Places.Count(p => p.Status == Status.Free);
+            TotalPlacesCount = Places.Count();
+            FreePlacesCount = FreePlaces.Count(p => p.Status == Status.Free);
         }
 
         public void Rename(string newName)
@@ -53,9 +57,9 @@ namespace Ultra.Core.Domain.Entities
                     $"Point({longitude.ToString(CultureInfo.InvariantCulture)} {latitude.ToString(CultureInfo.InvariantCulture)} )");
         }
 
-        public void AddSegment(string name, int amountPlaces,Guid newId)
+        public void AddSegment(string name, int amountPlaces, Guid newId)
         {
-            var segment = ParkingSegment.Create(this,name,amountPlaces,newId);
+            var segment = ParkingSegment.Create(this, name, amountPlaces, newId);
             Segments.Add(segment);
             Update();
         }
@@ -65,6 +69,18 @@ namespace Ultra.Core.Domain.Entities
         {
             Segments.Remove(Segments.First(s => s.Id == segmentId));
             Update();
+        }
+
+        public ParkingPlace BookPlace()
+        {
+            if (FreePlacesCount==0)
+            {
+                return null;
+            }
+            Random r=new Random();
+            var parkingPlace = FreePlaces.ElementAt(r.Next(0, FreePlaces.Count()));
+            parkingPlace.Book();
+            return parkingPlace;
         }
     }
 }

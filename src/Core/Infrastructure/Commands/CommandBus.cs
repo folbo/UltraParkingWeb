@@ -1,4 +1,6 @@
-﻿namespace Ultra.Core.Infrastructure.Commands
+﻿using Ultra.Core.Infrastructure.Data;
+
+namespace Ultra.Core.Infrastructure.Commands
 {
     public interface ICommandBus
     {
@@ -10,6 +12,7 @@
         public CommandResult Execute<TCommand>(TCommand command) where TCommand : ICommand
         {
             IoC.Resolve<ICommandHandler<TCommand>>().Execute(command);
+            IoC.Resolve<CoreDbContext>().SaveChanges();
             return CommandResult.Success();
         }
     }

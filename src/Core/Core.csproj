@@ -69,8 +69,10 @@
     <Compile Include="Domain\Commands\Admin\Parking\AddSegment.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\UpdateParkingLocation.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RenameParking.cs" />
+    <Compile Include="Domain\Commands\Client\BookPlace.cs" />
     <Compile Include="Domain\Commands\DeleteProject.cs" />
     <Compile Include="Domain\Commands\EditProject.cs" />
+    <Compile Include="Domain\DTO\ParkingPlaceDTO.cs" />
     <Compile Include="Domain\DTO\ParkingDTO.cs" />
     <Compile Include="Domain\Entities\Driver.cs" />
     <Compile Include="Domain\Entities\Owner.cs" />

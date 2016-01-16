@@ -34,6 +34,16 @@ namespace Ultra.Core.Domain.Entities
                 Number = segment.Places.Count,
             };
         }
+
+        public void Book()
+        {
+            if (Status != Status.Free)
+            {
+                throw new InvalidOperationException();
+            }
+            Status = Status.Reserved;
+            Parking.Update();
+        }
     }
 
     public enum Status
