@@ -65,7 +65,7 @@ namespace Ultra.Web.Controllers.Api
         [AllowAnonymous]
         [Route("login")]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RegisterResponseDTO))]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(LoginResponseDTO))]
         public async Task<HttpResponseMessage> Login(LoginParams model)
         {
             if (!ModelState.IsValid)

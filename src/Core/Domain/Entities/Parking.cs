@@ -71,7 +71,7 @@ namespace Ultra.Core.Domain.Entities
             Update();
         }
 
-        public ParkingPlace BookPlace()
+        public ParkingPlace BookPlace(Guid driverId)
         {
             if (FreePlacesCount==0)
             {
@@ -79,7 +79,7 @@ namespace Ultra.Core.Domain.Entities
             }
             Random r=new Random();
             var parkingPlace = FreePlaces.ElementAt(r.Next(0, FreePlaces.Count()));
-            parkingPlace.Book();
+            parkingPlace.Book(driverId);
             return parkingPlace;
         }
     }

@@ -21,7 +21,7 @@ namespace Ultra.Web.Installers
 
                 Classes
                     .FromAssemblyInThisApplication()
-                    .BasedOn(typeof(IEvent<>))
+                    .BasedOn(typeof(IEventHandler<>))
                     .LifestyleTransient()
                     .WithServiceBase(),
 

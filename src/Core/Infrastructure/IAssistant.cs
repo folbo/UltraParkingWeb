@@ -7,7 +7,7 @@ namespace Ultra.Core.Infrastructure
     public interface IAssistant
     {
         CommandResult Do<TCommand>(TCommand command) where TCommand : ICommand;
-        void Tell<T>(T @event);
+        void Tell<TEvent>(TEvent @event) where TEvent:IEvent;
         TResult Give<TResult>(IQuery<TResult> query);
         bool Check(IQuery<bool> query);
     }
@@ -40,7 +40,7 @@ namespace Ultra.Core.Infrastructure
             return _commandBus.Execute(command);
         }
 
-        public void Tell<T>(T @event)
+        public void Tell<TEvent>(TEvent @event) where TEvent:IEvent
         {
             _eventBus.Send(@event);
         }

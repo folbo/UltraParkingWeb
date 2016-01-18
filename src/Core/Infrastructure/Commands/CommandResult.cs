@@ -30,12 +30,4 @@ namespace Ultra.Core.Infrastructure.Commands
             return new CommandResult(validationResult);
         }
     }
-
-
-    public class ValidationError
-    {
-        public string PropertyName { get; set; }
-        public string ErrorMessage { get; set; }
-        public object AttemptedValue { get; set; }
-    }
 }

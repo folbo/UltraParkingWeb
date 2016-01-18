@@ -1,12 +1,9 @@
-﻿namespace Ultra.Core.Infrastructure.Events
-{
-    public interface IEvent<in TEvent>
-    {
-        void Handle(TEvent @event);
-    }
+using System;
 
-    public abstract class EventHandler<T> : Base, IEvent<T>
+namespace Ultra.Core.Infrastructure.Events
+{
+    public interface IEvent
     {
-        public abstract void Handle(T @event);
+        Guid EventId { get;}
     }
 }

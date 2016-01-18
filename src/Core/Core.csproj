@@ -70,8 +70,6 @@
     <Compile Include="Domain\Commands\Admin\Parking\UpdateParkingLocation.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RenameParking.cs" />
     <Compile Include="Domain\Commands\Client\BookPlace.cs" />
-    <Compile Include="Domain\Commands\DeleteProject.cs" />
-    <Compile Include="Domain\Commands\EditProject.cs" />
     <Compile Include="Domain\DTO\ParkingPlaceDTO.cs" />
     <Compile Include="Domain\DTO\ParkingDTO.cs" />
     <Compile Include="Domain\Entities\Driver.cs" />
@@ -80,12 +78,15 @@
     <Compile Include="Domain\Entities\ParkingSegment.cs" />
     <Compile Include="Domain\Entities\Payment.cs" />
     <Compile Include="Domain\Entities\ParkingPlace.cs" />
+    <Compile Include="Domain\EventHandlers\SettlementReservation.cs" />
+    <Compile Include="Domain\Events\PlaceHasBeenReleased.cs" />
     <Compile Include="Domain\Queries\Admin\ParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkingsInArea.cs" />
     <Compile Include="Domain\Queries\API\GetParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkings.cs" />
     <Compile Include="Domain\Queries\Admin\AllParkings.cs" />
-    <Compile Include="Domain\Queries\ParkingAggregate.cs" />
+    <Compile Include="Domain\Queries\UserHaveActiveBooking.cs" />
+    <Compile Include="Domain\Queries\Domain\ParkingAggregate.cs" />
     <Compile Include="Domain\ViewModels\DriverVM.cs" />
     <Compile Include="Domain\ViewModels\OwnerVM.cs" />
     <Compile Include="Domain\ViewModels\ParkingInfoVM.cs" />
@@ -98,9 +99,12 @@
     <Compile Include="Infrastructure\Commands\CommandHandler.cs" />
     <Compile Include="Infrastructure\Commands\CommandResult.cs" />
     <Compile Include="Infrastructure\Commands\ICommand.cs" />
+    <Compile Include="Infrastructure\Commands\ValidationError.cs" />
     <Compile Include="Infrastructure\Data\CoreDbContext.cs" />
+    <Compile Include="Infrastructure\DomainEvents.cs" />
     <Compile Include="Infrastructure\Entity.cs" />
     <Compile Include="Infrastructure\Events\IEvent.cs" />
+    <Compile Include="Infrastructure\Events\IEventHandler.cs" />
     <Compile Include="Infrastructure\Events\IEventBus.cs" />
     <Compile Include="Infrastructure\IAssistant.cs" />
     <Compile Include="Infrastructure\IDateTimeGetter.cs" />
@@ -112,9 +116,7 @@
     <Compile Include="Mappings\DTOMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -10,14 +10,19 @@ namespace Ultra.Core.Domain.Commands.Client
     {
         public Guid ParkingId { get; set; }
         public ParkingPlaceDTO ReturnValue { get; set; }
+        public Guid UserId { get; set; }
     }
 
     public class BookPlaceCommandHandler : CommandHandler<BookPlace>
     {
         public override void Execute(BookPlace command)
         {
+            if (Please.Check(new UserHaveActiveBooking(command.UserId)))
+            {
+                throw new InvalidOperationException();
+            }
             var parking = Please.Give(new ParkingAggregate(command.ParkingId));
-            var bookedPlace = parking.BookPlace();
+            var bookedPlace = parking.BookPlace(command.UserId);
             command.ReturnValue = Mapper.Map<ParkingPlaceDTO>(bookedPlace);
             Data.SaveChanges();
         }
