@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Castle.Windsor;
 
 namespace Ultra.Core
@@ -31,6 +32,10 @@ namespace Ultra.Core
         public static IEnumerable<T> ResolveAll<T>()
         {
             return _container.ResolveAll<T>();
+        }
+        public static IEnumerable<object> ResolveAll(Type service)
+        {
+            return _container.ResolveAll(service).Cast<object>();
         }
 
         public static void Release(object instance)

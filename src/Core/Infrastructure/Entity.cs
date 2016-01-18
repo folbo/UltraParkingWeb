@@ -2,13 +2,8 @@
 
 namespace Ultra.Core.Infrastructure
 {
-    public class Entity
+    public interface IEntity
     {
-        public Entity()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        public virtual Guid Id { get; set; }
+        Guid Id { get;  }
     }
 }

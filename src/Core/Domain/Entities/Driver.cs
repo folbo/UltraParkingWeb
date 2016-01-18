@@ -1,23 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ultra.Core.Infrastructure;
 
 namespace Ultra.Core.Domain.Entities
 {
-    public class Driver : Entity
+    public class Driver : IEntity
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        protected Driver()
+        {
+        }
+
+        public Guid Id { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
+
         /// <summary>
-        /// środki na koncie
+        ///     środki na koncie
         /// </summary>
-        public int Currency { get; set; }
+        public decimal Currency { get; protected set; }
+
         /// <summary>
-        /// rejestracja samochodowa
+        ///     rejestracja samochodowa
         /// </summary>
-        public string CarId { get; set; }
+        public string CarId { get; protected set; }
+
+        public ICollection<DriverPayment> Payments { get; protected set; } 
+
+
+        public void AddPayment(DateTime startTime, DateTime endTime, Guid parkingPlaceId, Guid parkingId, decimal price)
+        {
+            Currency -= price;
+            var payment = DriverPayment.Create(this,startTime,endTime,parkingPlaceId,parkingId,price);
+            Payments.Add(payment);
+
+            //if (Currency<0){DomainEvents.Tell();} todo
+        }
     }
 }

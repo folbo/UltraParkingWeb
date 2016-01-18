@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -12,6 +13,11 @@ namespace Ultra.Web.Installers
             container.Register(
                 Classes.FromThisAssembly()
                        .BasedOn<Controller>()
+                       .Configure(c => c.LifestyleTransient())
+                );
+            container.Register(
+                Classes.FromThisAssembly()
+                       .BasedOn<ApiController>()
                        .Configure(c => c.LifestyleTransient())
                 );
         }

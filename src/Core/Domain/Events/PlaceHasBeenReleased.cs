@@ -14,13 +14,14 @@ namespace Ultra.Core.Domain.Events
           
         }
 
-        public ParkingPlaceHasBeenReleased(DateTime from, DateTime to, Guid parkingPlaceId, Guid driverId)
+        public ParkingPlaceHasBeenReleased(DateTime @from, DateTime to, Guid parkingPlaceId, Guid driverId, Guid parkingId)
         {
             EventId = Guid.NewGuid();
             From = from;
             To = to;
             ParkingPlaceId = parkingPlaceId;
             DriverId = driverId;
+            ParkingId = parkingId;
         }
 
         public Guid EventId { get; }
@@ -28,5 +29,6 @@ namespace Ultra.Core.Domain.Events
         public DateTime To { get; }
         public Guid ParkingPlaceId { get; }
         public Guid DriverId { get; }
+        public Guid ParkingId { get; set; }
     }
 }

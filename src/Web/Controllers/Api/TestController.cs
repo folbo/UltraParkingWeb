@@ -61,7 +61,7 @@ namespace Ultra.Web.Controllers.Api
         [HttpGet]
         public void ReleasePlaces()
         {
-            var parkingsId = _data.Parkings.Select(parking => parking.Id);
+            var parkingsId = _data.Parkings.Select(parking => parking.Id).ToArray();
             foreach (var id in parkingsId)
             {
                 var parking = Please.Give(new ParkingAggregate(id));

@@ -24,6 +24,7 @@ namespace Ultra.Web
 
             ControllerBuilder.Current.SetControllerFactory(new IoCControllerFactory(container));
 
+
             DTOMappings.Register();
             VMMappings.Register();
         }

@@ -3,6 +3,8 @@ using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using Ultra.Core;
+using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web
 {
@@ -22,6 +24,9 @@ namespace Ultra.Web
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            //IoC
+            GlobalConfiguration.Configuration.DependencyResolver = new WindsorWebApiDependencyResolver();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -1,30 +1,30 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ultra.Core.Domain.Events;
 using Ultra.Core.Infrastructure;
 
 namespace Ultra.Core.Domain.Entities
 {
-    public class ParkingPlace : Entity
+    public class ParkingPlace : IEntity
     {
         protected ParkingPlace()
         {
         }
 
+        public Guid Id { get; set; }
+        public Guid SegmentId { get; set; }
+        public Guid ParkingId { get; set; }
+
+        public virtual ParkingSegment Segment { get; set; }
+        public virtual Parking Parking { get; set; }
+
         public Status Status { get; set; }
         public DateTime? StartTime { get; set; }
         public Guid? DriverId { get; set; }
-        public Guid ParkingId { get; set; }
-        public Guid SegmentId { get; set; }
-        public virtual Parking Parking { get; set; }
-        public virtual ParkingSegment Segment { get; set; }
         public int Number { get; set; }
 
         public static ParkingPlace Create(ParkingSegment segment)
         {
-            return new ParkingPlace()
+            return new ParkingPlace
             {
                 Id = Guid.NewGuid(),
                 Segment = segment,
@@ -32,7 +32,7 @@ namespace Ultra.Core.Domain.Entities
                 Parking = segment.Parking,
                 ParkingId = segment.ParkingId,
                 Status = Status.Free,
-                Number = segment.Places.Count,
+                Number = segment.Places.Count
             };
         }
 
@@ -44,7 +44,7 @@ namespace Ultra.Core.Domain.Entities
             }
             Status = Status.Reserved;
             StartTime = DateTime.UtcNow;
-            this.DriverId = driverId;
+            DriverId = driverId;
             Parking.Update();
         }
 
@@ -58,7 +58,7 @@ namespace Ultra.Core.Domain.Entities
             if (Status == Status.Free)
             {
                 StartTime = DateTime.UtcNow;
-                this.DriverId = driverId;
+                DriverId = driverId;
             }
             if (DriverId != driverId)
             {
@@ -73,7 +73,7 @@ namespace Ultra.Core.Domain.Entities
         {
             if (DriverId != null)
             {
-               DomainEvents.Tell(new ParkingPlaceHasBeenReleased(StartTime.Value,DateTime.UtcNow,Id,DriverId.Value)); 
+                DomainEvents.Tell(new ParkingPlaceHasBeenReleased(StartTime.Value, DateTime.UtcNow, Id, DriverId.Value,ParkingId));
             }
             Status = Status.Free;
             StartTime = null;

@@ -5,15 +5,17 @@ using Ultra.Core.Infrastructure;
 
 namespace Ultra.Core.Domain.Entities
 {
-    public class ParkingSegment : Entity
+    public class ParkingSegment : IEntity
     {
         protected ParkingSegment()
         {
             Places = new List<ParkingPlace>();
         }
 
-        public string Name{ get; protected set; }
+        public Guid Id { get; set; }
         public Guid ParkingId { get; protected set; }
+
+        public string Name { get; protected set; }
         public virtual ICollection<ParkingPlace> Places { get; protected set; }
         public virtual Parking Parking { get; protected set; }
 
@@ -22,16 +24,16 @@ namespace Ultra.Core.Domain.Entities
             Name = newName;
         }
 
-        public static ParkingSegment Create(Parking parking,string name,int amountPlaces, Guid newId)
+        public static ParkingSegment Create(Parking parking, string name, int amountPlaces, Guid newId)
         {
-            var segment = new ParkingSegment()
+            var segment = new ParkingSegment
             {
                 ParkingId = parking.Id,
                 Parking = parking,
                 Name = name,
                 Id = newId
             };
-            for (int i = 0; i < amountPlaces; i++)
+            for (var i = 0; i < amountPlaces; i++)
             {
                 segment.Places.Add(ParkingPlace.Create(segment));
             }
@@ -40,10 +42,10 @@ namespace Ultra.Core.Domain.Entities
 
         public void Resize(int amountPlaces)
         {
-            var placesDiff =  amountPlaces- Places.Count;
+            var placesDiff = amountPlaces - Places.Count;
             if (placesDiff >= 0)
             {
-                for (int i = 0; i < placesDiff; i++)
+                for (var i = 0; i < placesDiff; i++)
                 {
                     Places.Add(ParkingPlace.Create(this));
                 }
