@@ -15,7 +15,7 @@ namespace Ultra.Web.Areas.Admin
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new {action = "Index", id = UrlParameter.Optional}
-                 , new[] { "Ultra.Web.Admin.Controllers" }
+                 , new[] { "Ultra.Web.Areas.Admin.Controllers" }
                 );
         }
     }
