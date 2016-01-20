@@ -1,6 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Ultra.Core.Domain.Entities;
 using Ultra.Core.Domain.ViewModels;
+using Ultra.Core.Infrastructure.Data;
 
 namespace Ultra.Core.Mappings
 {

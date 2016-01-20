@@ -15,7 +15,7 @@
                     <i class="fa fa-link"></i> <span>Another Link</span>
                 </a>
             </li>
-            @if (User.IsInRole("Admin"))
+            @if (User.IsInRole("Owner"))
             {
                 <li class="treeview">
                     <a href="#">
@@ -43,6 +43,9 @@
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Transactions", new {Area = "Admin"})">Lista transakcji</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Owner", new {Area = "Admin"})">Firmy</a>
                         </li>
                     </ul>
                 </li>

@@ -1,0 +1,173 @@
+﻿@using Ultra.Web.Infrastructure
+@model IEnumerable<Ultra.Core.Domain.ViewModels.OwnerVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="box">
+    <div class="box-header with-border">
+        <h2>
+            Parkingi
+        </h2>
+
+
+    </div>
+
+    <div class="box-body no-padding">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Nazwa firmy</label>
+                    <span data-bind="editable:NewOwnerName"></span>
+                    <label>Użytkownik</label>
+                    <span id="user-name" data-bind="editable:NewOwnerUserEmail,editableOptions:ChangeOwnerEditableOptions"></span>
+                </td>
+                <td class="text-right">
+                    <button class="btn btn-success" data-bind="click:AddOwner">Dodaj</button>
+                </td>
+            </tr>
+
+            <!-- ko foreach: Owners-->
+            <tr>
+                <td>
+                    <span data-bind="editable:Name,editableOptions:{save:$data.RenameOwner}"></span>
+                </td>
+                <td class="text-right">
+                    <button class="btn btn-danger" data-bind="click:$root.DeleteOwner">Usuń</button>
+                </td>
+            </tr>
+            <!-- /ko -->
+
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+
+
+    <script src="~/Content/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <script src="~/Content/ko/bindings/knockout.x-editable.js"></script>
+    <script src="~/Content/AdminLTE/plugins/select2/select2.full.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false&.js"></script>
+    <script src="~/Content/ko/bindings/googlemapBinding.js"></script>
+
+    <script>
+        function OwnerVM(json) {
+            var self = this;
+
+            ko.mapping.fromJS(json, null, this);
+
+            self.RenameOwner = function (e,params) {
+                Ultra.postJson('@Url.Action("RenameOwner")', {
+                    OwnerId: self.Id(),
+                    NewName: params.newValue,
+                }, "Nazwa firmy została zmieniona");
+            };
+        }
+
+        function OwnerListVM(json) {
+            var self = this;
+
+            var mapperSettings = {
+                'Owners': {
+                    create: function (options) {
+                        return new OwnerVM(options.data, self);
+                    }
+                }
+            };
+
+            ko.mapping.fromJS(json, mapperSettings, this);
+
+            self.NewOwnerName = ko.observable();
+            self.NewOwnerUserEmail = ko.observable();
+
+            self.AddOwner = function () {
+                console.log(self.NewOwnerName());
+                console.log(self.NewOwnerUserEmail());
+                Ultra.postJson('@Url.Action("AddOwner")', {
+                    NewOwnerName: self.NewOwnerName(),
+                    NewOwnerUserEmail: self.NewOwnerUserEmail(),
+                    }, "Firma została dodana")
+                    .success(function(data) {
+                        self.Owners.push({
+                            Id: data,
+                            Name: self.NewOwnerName(),
+                        });
+                        self.NewOwnerName("");
+                        self.NewOwnerUserEmail("");
+                    });
+            };
+
+
+
+            self.ChangeOwnerEditableOptions = {
+                tpl: '<select style="width:150px;"></select>',
+                type: 'select2',
+                display: function(value) {
+                    $("#user-name").html(value);
+                },
+                select2: {
+                    ajax: {
+                        type: 'POST',
+                        multiple: true,
+                        url: "@Url.Action("SearchUser")",
+                        delay: 250,
+                        data: function(term, page) {
+                            return {
+                                term: term.term
+                            };
+                        },
+                        processResults: function(data, page) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return { text: item.Name, id: item.Name };
+                                })
+                            };
+                        },
+                        cache: true
+                    },
+                }
+            };
+
+            self.DeleteOwner = function(owner) {
+                bootbox.confirm({
+                    title: 'Usuwanie firmy',
+                    message: 'Czy na pewno chcesz usunąć firmę. Tej operacji nie da się odwrócić ',
+                    buttons: {
+                        'cancel': {
+                            label: 'Anuluj',
+                            className: 'btn-default pull-left'
+                        },
+                        'confirm': {
+                            label: 'Usuń',
+                            className: 'btn-danger pull-right'
+                        }
+                    },
+                    callback: function(result) {
+                        if (result) {
+                            Ultra.postJson('@Url.Action("RemoveOwner")', {
+                                    OwnerId: owner.Id(),
+                                }, "Firma zastała usunięta")
+                                .success(function(data) {
+                                    self.Owners.remove(owner);
+                                });
+                        }
+                    }
+                });
+            };
+        }
+
+        var model = JSON.parse(@Html.ModelToJSon(Model));
+        ko.applyBindings(new OwnerListVM({ Owners: model }), document.getElementById("page-content"));
+    </script>
+}

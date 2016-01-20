@@ -87,5 +87,10 @@ namespace Ultra.Core.Domain.Entities
             OwnerId = newOwnerId;
             OwnerName = ownerName;
         }
+
+        public void UpdateOwnerName(string newName)
+        {
+            OwnerName = newName;
+        }
     }
 }

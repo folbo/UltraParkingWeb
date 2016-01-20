@@ -7,7 +7,7 @@ using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web.Areas.Owner.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Owner")]
     public class TransactionsController : BaseController
     {
         public ActionResult Index()
