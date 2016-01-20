@@ -14,16 +14,14 @@ namespace Ultra.Core.Mappings
     {
         public static void Register()
         {
-            Mapper.CreateMap<Parking, ParkingInfoVM>()
-                .ForMember(dest => dest.OwnerName, c => c.UseValue("MR Todo")); // todo 
+            Mapper.CreateMap<Parking, ParkingInfoVM>();
 
             Mapper.CreateMap<Parking, ParkingVM>()
                 .ForMember(dest => dest.Longitude, c => c.ResolveUsing(src => src.Location?.Longitude ?? 21.00997))
-                .ForMember(dest => dest.Latitude, c => c.ResolveUsing(src => src.Location?.Latitude?? 52.22838))
-                .ForMember(dest => dest.OwnerName, c => c.UseValue("MR Todo")); // todo 
+                .ForMember(dest => dest.Latitude, c => c.ResolveUsing(src => src.Location?.Latitude ?? 52.22838));
 
-            Mapper.CreateMap<ParkingSegment, ParkingSegmentVM>();;
-                //.ForMember(dest => dest.PlacesCount, c => c.ResolveUsing(src => src.ParkingsPlaces.Count)); // todo 
+            Mapper.CreateMap<ParkingSegment, ParkingSegmentVM>();
+            Mapper.CreateMap<Owner, OwnerVM>();
 
 
             //Mapper.CreateMap<Parking, ParkingDTO>();

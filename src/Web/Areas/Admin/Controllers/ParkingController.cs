@@ -79,5 +79,16 @@ namespace Ultra.Web.Areas.Admin.Controllers
             Please.Do(command);
             return JsonOk();
         }
+
+        public ActionResult SearchOwner(SearchOwner query)
+        {
+            return Json(Please.Give(query));
+        }
+
+        public ActionResult ChangeParkingOwner(ChangeParkingOwner command)
+        {
+            Please.Do(command);
+            return JsonOk();
+        }
     }
 }

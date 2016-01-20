@@ -4,6 +4,7 @@ using System.Data.Entity.Spatial;
 using System.Globalization;
 using System.Linq;
 using Ultra.Core.Infrastructure;
+using Ultra.Core.Infrastructure.Data;
 
 namespace Ultra.Core.Domain.Entities
 {
@@ -14,12 +15,13 @@ namespace Ultra.Core.Domain.Entities
             Segments = new List<ParkingSegment>();
         }
 
-        public Guid Id { get; set; }
+        public Guid Id { get; protected set; }
         public string Name { get; protected set; }
         public int TotalPlacesCount { get; protected set; }
         public int FreePlacesCount { get; protected set; }
         public virtual ICollection<ParkingSegment> Segments { get; protected set; }
         public Guid OwnerId { get; protected set; }
+        public string OwnerName { get; protected set; }
         public DbGeography Location { get; protected set; }
 
         public virtual IEnumerable<ParkingPlace> Places => Segments.SelectMany(s => s.Places);
@@ -78,6 +80,12 @@ namespace Ultra.Core.Domain.Entities
             var parkingPlace = FreePlaces.ElementAt(r.Next(0, FreePlaces.Count()));
             parkingPlace.Book(driverId);
             return parkingPlace;
+        }
+
+        public void SetOwner(Guid newOwnerId,string ownerName)
+        {
+            OwnerId = newOwnerId;
+            OwnerName = ownerName;
         }
     }
 }

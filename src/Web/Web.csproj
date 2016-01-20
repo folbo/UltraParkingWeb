@@ -252,6 +252,12 @@
     <Content Include="Content\AdminLTE\less\skins\skin-green.min.css">
       <DependentUpon>skin-green.css</DependentUpon>
     </Content>
+    <Content Include="Content\AdminLTE\plugins\select2\select2.css">
+      <DependentUpon>select2.less</DependentUpon>
+    </Content>
+    <Content Include="Content\AdminLTE\plugins\select2\select2.min.css">
+      <DependentUpon>select2.css</DependentUpon>
+    </Content>
     <Content Include="Content\AdminLTE\plugins\toastr\toastr.js" />
     <Content Include="Content\App.js" />
     <Content Include="Content\Bootbox\bootbox.min.js" />
@@ -978,11 +984,10 @@
     <Content Include="Content\AdminLTE\plugins\select2\i18n\vi.js" />
     <Content Include="Content\AdminLTE\plugins\select2\i18n\zh-CN.js" />
     <Content Include="Content\AdminLTE\plugins\select2\i18n\zh-TW.js" />
-    <Content Include="Content\AdminLTE\plugins\select2\select2.css" />
+    <None Include="Content\AdminLTE\plugins\select2\select2.less" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.full.js" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.full.min.js" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.js" />
-    <Content Include="Content\AdminLTE\plugins\select2\select2.min.css" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.min.js" />
     <Content Include="Content\AdminLTE\plugins\slimScroll\jquery.slimscroll.js" />
     <Content Include="Content\AdminLTE\plugins\slimScroll\jquery.slimscroll.min.js" />
@@ -1214,9 +1219,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="compilerconfig.json" />
-    <Content Include="compilerconfig.json.defaults">
+    <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
-    </Content>
+    </None>
     <Content Include="Content\AdminLTE\plugins\ckeditor\CHANGES.md" />
     <Content Include="Content\AdminLTE\plugins\ckeditor\LICENSE.md" />
     <Content Include="Content\AdminLTE\plugins\ckeditor\plugins\scayt\LICENSE.md" />

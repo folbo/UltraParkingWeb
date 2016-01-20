@@ -75,6 +75,7 @@
     <Compile Include="Domain\Commands\Admin\Parking\ResizeSegment.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RenameSegment.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\AddSegment.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\ChangeParkingOwner.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\UpdateParkingLocation.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RenameParking.cs" />
     <Compile Include="Domain\Commands\Client\BookPlace.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Domain\EventHandlers\SettlementReservation.cs" />
     <Compile Include="Domain\Events\PlaceHasBeenReleased.cs" />
     <Compile Include="Domain\Events\UserRegistered.cs" />
+    <Compile Include="Domain\Queries\Admin\SearchOwner.cs" />
     <Compile Include="Domain\Queries\Admin\AllTransactions.cs" />
     <Compile Include="Domain\Queries\Admin\ParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkingsInArea.cs" />

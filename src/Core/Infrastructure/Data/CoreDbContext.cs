@@ -21,6 +21,7 @@ namespace Ultra.Core.Infrastructure.Data
 
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<DriverPayment> DriverPayments { get; set; }
+        public virtual DbSet<Owner> Owners { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,7 +34,7 @@ namespace Ultra.Core.Infrastructure.Data
             modelBuilder.Entity<ParkingSegment>()
                 .HasKey(segment => new {segment.ParkingId, segment.Id});
             modelBuilder.Entity<ParkingPlace>()
-                .HasKey(place => new { place.ParkingId, place.SegmentId, place.Id});
+                .HasKey(place => new {place.ParkingId, place.SegmentId, place.Id});
 
             modelBuilder.Entity<Parking>()
                 .HasMany(p => p.Segments)
@@ -47,11 +48,11 @@ namespace Ultra.Core.Infrastructure.Data
             modelBuilder.Entity<ParkingSegment>()
                 .HasMany(s => s.Places)
                 .WithRequired(p => p.Segment)
-                .HasForeignKey(p => new { p.ParkingId, p.SegmentId});
+                .HasForeignKey(p => new {p.ParkingId, p.SegmentId});
 
             //Driver
             modelBuilder.Entity<Driver>().HasKey(driver => driver.Id);
-            modelBuilder.Entity<DriverPayment>().HasKey(payment => new { payment.DriverId,payment.Id});
+            modelBuilder.Entity<DriverPayment>().HasKey(payment => new {payment.DriverId, payment.Id});
         }
     }
 

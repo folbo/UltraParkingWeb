@@ -1,22 +1,22 @@
-[
+﻿[
   {
     "outputFile": "Content/fontawesome4/font-awesome.css",
-    "inputFile": "Content/fontawesome4/font-awesome.less",
-    "sourceMap": false
+    "inputFile": "Content/fontawesome4/font-awesome.less"
   },
   {
     "outputFile": "Content/bootstrap/bootstrap.css",
-    "inputFile": "Content/bootstrap/bootstrap.less",
-    "sourceMap": false
+    "inputFile": "Content/bootstrap/bootstrap.less"
   },
   {
     "outputFile": "Content/AdminLTE/less/AdminLTE.css",
-    "inputFile": "Content/AdminLTE/less/AdminLTE.less",
-    "sourceMap": false
+    "inputFile": "Content/AdminLTE/less/AdminLTE.less"
   },
   {
     "outputFile": "Content/AdminLTE/less/skins/skin-green.css",
-    "inputFile": "Content/AdminLTE/less/skins/skin-green.less",
-    "sourceMap": false
+    "inputFile": "Content/AdminLTE/less/skins/skin-green.less"
+  },
+  {
+    "outputFile": "Content/AdminLTE/plugins/select2/select2.css",
+    "inputFile": "Content/AdminLTE/plugins/select2/select2.less"
   }
 ]

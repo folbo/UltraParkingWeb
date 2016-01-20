@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/Content/AdminLTE/less/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-green.min.css">
     <link rel="stylesheet" href="~/Content/Site.min.css">
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/select2/select2.min.css">
     @RenderSection("CSS", required: false)
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/Content/ko/knockout.mapping-latest.js"></script>
     <script src="~/Content/Bootbox/bootbox.min.js"></script>
     <script type="text/javascript">
-        $(function () {
+        $(function() {
 
             toastr.options = {
                 "closeButton": false,
@@ -73,32 +74,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 "hideMethod": "fadeOut"
             }
 
-            function LoginBox() {
-                var self = this;
+            @if (!@User.Identity.IsAuthenticated)
+            {
+                <text>
+    function LoginBox() {
+        var self = this;
 
-                self.Email = ko.observable();
-                self.Password = ko.observable();
-                self.RememberMe = ko.observable(true);
+        self.Email = ko.observable();
+        self.Password = ko.observable();
+        self.RememberMe = ko.observable(true);
 
-                self.Login = function () {
-                    window.Ultra.postJson('@Url.Action("Login", "Account")', {
-                            Email: self.Email(),
+        self.Login = function() {
+            window.Ultra.postJson('@Url.Action("Login", "Account")', {
+                Email: self.Email(),
                             Password: self.Password(),
                             RememberMe: self.RememberMe()
-                        })
-                        .success(function (data) {
-                            if (data.success) {
-                                location.reload();
-                            } else {
-                                toastr.error("Nieprawidłowy adres e-mail lub hasło");
-                            }
-
-                        });
+                            })
+                        .success(function(data) {
+                if (data.success)
+                {
+                    location.reload();
+                }
+                else {
+                    toastr.error("Nieprawidłowy adres e-mail lub hasło");
                 }
 
-            };
+            });
+        }
+
+    };
 
             ko.applyBindings(new LoginBox(), document.getElementById("login-box"));
+            </text>
+            }
         });
     </script>
     @RenderSection("Scripts", required: false)
