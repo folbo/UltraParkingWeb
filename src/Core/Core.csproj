@@ -86,8 +86,10 @@
     <Compile Include="Domain\Entities\ParkingSegment.cs" />
     <Compile Include="Domain\Entities\DriverPayment.cs" />
     <Compile Include="Domain\Entities\ParkingPlace.cs" />
+    <Compile Include="Domain\EventHandlers\FinalizeRegistration.cs" />
     <Compile Include="Domain\EventHandlers\SettlementReservation.cs" />
     <Compile Include="Domain\Events\PlaceHasBeenReleased.cs" />
+    <Compile Include="Domain\Events\UserRegistered.cs" />
     <Compile Include="Domain\Queries\Admin\ParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkingsInArea.cs" />
     <Compile Include="Domain\Queries\API\GetParkingById.cs" />

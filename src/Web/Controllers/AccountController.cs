@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Ultra.Core.Domain.Events;
 using Ultra.Core.Infrastructure.Data;
 using Ultra.Web.Infrastructure;
 using Ultra.Web.Models;
@@ -15,7 +16,7 @@ using Ultra.Web.Models;
 namespace Ultra.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -162,7 +163,7 @@ namespace Ultra.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -173,7 +174,7 @@ namespace Ultra.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    Please.Tell(new UserRegistered(Guid.Parse(user.Id),model.CarId,model.FirstName,model.LastName));
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -378,7 +379,7 @@ namespace Ultra.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

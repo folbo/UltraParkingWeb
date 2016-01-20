@@ -8,6 +8,7 @@ namespace Ultra.Core.Domain.Entities
     {
         protected Driver()
         {
+            Payments = new List<DriverPayment>();
         }
 
         public Guid Id { get; protected set; }
@@ -34,6 +35,18 @@ namespace Ultra.Core.Domain.Entities
             Payments.Add(payment);
 
             //if (Currency<0){DomainEvents.Tell();} todo
+        }
+
+        public static Driver Create(Guid id, string carId, string firstName, string lastName)
+        {
+            return new Driver()
+            {
+                Id = id,
+                CarId = carId,
+                Currency = 0,
+                FirstName = firstName,
+                LastName = lastName,
+            };
         }
     }
 }

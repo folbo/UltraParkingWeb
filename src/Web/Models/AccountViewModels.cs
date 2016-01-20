@@ -85,8 +85,17 @@ namespace Ultra.Web.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Hometown")]
-        public string Hometown { get; set; }
+        [Required]
+        [Display(Name = "Rejestracja samochodu")]
+        public string CarId { get; set; }
+
+        [Required]
+        [Display(Name = "Imię")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string LastName { get; set; }
     }
 
     public class ResetPasswordViewModel

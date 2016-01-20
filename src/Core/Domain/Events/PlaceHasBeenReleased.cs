@@ -7,14 +7,10 @@ using Ultra.Core.Infrastructure.Events;
 
 namespace Ultra.Core.Domain.Events
 {
-    public class ParkingPlaceHasBeenReleased :IEvent
+    public class ParkingPlaceHasBeenReleased : IEvent
     {
-        public ParkingPlaceHasBeenReleased()
-        {
-          
-        }
-
-        public ParkingPlaceHasBeenReleased(DateTime @from, DateTime to, Guid parkingPlaceId, Guid driverId, Guid parkingId)
+        public ParkingPlaceHasBeenReleased(DateTime @from, DateTime to, Guid parkingPlaceId, Guid driverId,
+            Guid parkingId)
         {
             EventId = Guid.NewGuid();
             From = from;

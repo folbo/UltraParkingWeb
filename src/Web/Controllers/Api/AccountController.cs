@@ -9,13 +9,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Swashbuckle.Swagger.Annotations;
+using Ultra.Core.Domain.Events;
 using Ultra.Core.Infrastructure.Data;
+using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web.Controllers.Api
 {
     [Authorize]
     [RoutePrefix("api/account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -113,7 +115,7 @@ namespace Ultra.Web.Controllers.Api
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    Please.Tell(new UserRegistered(Guid.Parse(user.Id), model.CarId, model.FirstName, model.LastName));
                     return Request.CreateResponse(HttpStatusCode.OK, new RegisterResponseDTO()
                     {
                         UserId = Guid.Parse(user.Id)
@@ -213,6 +215,13 @@ namespace Ultra.Web.Controllers.Api
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required]
+        public string CarId { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
     }
 
     public class RegisterResponseDTO
