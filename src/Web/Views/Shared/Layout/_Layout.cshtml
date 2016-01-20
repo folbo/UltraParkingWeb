@@ -16,7 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-green.min.css">
     <link rel="stylesheet" href="~/Content/Site.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/plugins/select2/select2.min.css">
-    @RenderSection("CSS", required: false)
+    @RenderSection("CSS", false)
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -25,58 +25,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
 </head>
 <body class="hold-transition fixed skin-green sidebar-mini">
-    <div class="wrapper">
-        <!-- Main Header -->
-        @Html.Partial("Layout/_Header")
-        <!-- Left side column. contains the logo and sidebar -->
-        @Html.Partial("Layout/_Menu")
+<div class="wrapper">
+    <!-- Main Header -->
+    @Html.Partial("Layout/_Header")
+    <!-- Left side column. contains the logo and sidebar -->
+    @Html.Partial("Layout/_Menu")
 
-        <div class="content-wrapper">
-            <!-- Main content -->
-            <section class="content" id="page-content">
-                @RenderBody()
-            </section>
-        </div>
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content" id="page-content">
+            @RenderBody()
+        </section>
+    </div>
 
-        <!-- Main Footer -->
-        @Html.Partial("Layout/_Footer")
+    <!-- Main Footer -->
+    @Html.Partial("Layout/_Footer")
 
-        <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
-    <!-- JS SCRIPTS -->
-    <script src="~/Content/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <script src="~/Content/bootstrap/bootstrap.js"></script>
-    <script src="~/Content/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="~/Content/AdminLTE/plugins/toastr/toastr.js"></script>
-    <script src="~/Content/AdminLTE/app.js"></script>
-    <script src="~/Content/App.js"></script>
-    <script src="~/Content/ko/knockout-3.3.0.js"></script>
-    <script src="~/Content/ko/knockout.mapping-latest.js"></script>
-    <script src="~/Content/Bootbox/bootbox.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
+    <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
+<!-- JS SCRIPTS -->
+<script src="~/Content/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="~/Content/bootstrap/bootstrap.js"></script>
+<script src="~/Content/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="~/Content/AdminLTE/plugins/toastr/toastr.js"></script>
+<script src="~/Content/AdminLTE/app.js"></script>
+<script src="~/Content/App.js"></script>
+<script src="~/Content/ko/knockout-3.3.0.js"></script>
+<script src="~/Content/ko/knockout.mapping-latest.js"></script>
+<script src="~/Content/Bootbox/bootbox.min.js"></script>
+<script type="text/javascript">
+    $(function() {
 
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-bottom-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "300",
-                "timeOut": "10000",
-                "extendedTimeOut": "10000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "300",
+            "timeOut": "10000",
+            "extendedTimeOut": "10000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
 
-            @if (!@User.Identity.IsAuthenticated)
-            {
-                <text>
+        @if (!@User.Identity.IsAuthenticated)
+        {
+            <text>
     function LoginBox() {
         var self = this;
 
@@ -106,9 +106,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             ko.applyBindings(new LoginBox(), document.getElementById("login-box"));
             </text>
-            }
-        });
-    </script>
-    @RenderSection("Scripts", required: false)
+        }
+    });
+</script>
+@RenderSection("Scripts", false)
 </body>
 </html>

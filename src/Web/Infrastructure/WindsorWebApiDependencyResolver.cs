@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http.Dependencies;
-using Castle.Windsor;
 using Ultra.Core;
 
 namespace Ultra.Web.Infrastructure
 {
     public class WindsorWebApiDependencyResolver : IDependencyResolver
     {
-
-
         public IDependencyScope BeginScope()
         {
             return new WindsorWebApiDependencyScope();
@@ -24,7 +20,8 @@ namespace Ultra.Web.Infrastructure
                 resolved = IoC.Resolve(serviceType);
             }
             catch (Exception)
-            {}
+            {
+            }
             return resolved;
         }
 
@@ -36,13 +33,13 @@ namespace Ultra.Web.Infrastructure
                 resolve = IoC.ResolveAll(serviceType);
             }
             catch (Exception)
-            { }
+            {
+            }
             return resolve;
         }
 
         public void Dispose()
         {
-            
         }
     }
 }

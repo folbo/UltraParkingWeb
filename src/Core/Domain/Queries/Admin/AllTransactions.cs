@@ -19,13 +19,13 @@ namespace Ultra.Core.Domain.Queries.Admin
                 .Join(Data.Parkings
                     , payment => payment.ParkingId
                     , parking => parking.Id
-                    , (payment, parking) => new PaymentVM()
+                    , (payment, parking) => new PaymentVM
                     {
                         DriverName = payment.Driver.FirstName + " " + payment.Driver.LastName,
                         StartTime = payment.StartTime,
                         EndTime = payment.EndTime,
                         Price = payment.Price,
-                        ParkingName = parking.Name,
+                        ParkingName = parking.Name
                     })
                 .OrderBy(vm => vm.StartTime);
         }

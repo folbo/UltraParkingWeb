@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Ultra.Core.Domain.Events;
-using Ultra.Core.Domain.Queries;
 using Ultra.Core.Domain.Queries.Domain;
 
 namespace Ultra.Core.Domain.EventHandlers

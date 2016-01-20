@@ -34,14 +34,8 @@ namespace Ultra.Web.Controllers.Api
 
         public ApplicationSignInManager SignInManager
         {
-            get
-            {
-                return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
+            get { return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>(); }
+            private set { _signInManager = value; }
         }
 
         public ApplicationUserManager UserManager
@@ -50,23 +44,20 @@ namespace Ultra.Web.Controllers.Api
             {
                 return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
-            private set
-            {
-                _userManager = value;
-            }
+            private set { _userManager = value; }
         }
 
         /// <summary>
-        /// Login user
+        ///     Login user
         /// </summary>
         /// <param name="model"></param>
-        /// <response code="400">Bad request</response >
-        /// <response code="200" cref="LoginResponseDTO"></response >
+        /// <response code="400">Bad request</response>
+        /// <response code="200" cref="LoginResponseDTO"></response>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(LoginResponseDTO))]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof (LoginResponseDTO))]
         public async Task<HttpResponseMessage> Login(LoginParams model)
         {
             if (!ModelState.IsValid)
@@ -79,32 +70,32 @@ namespace Ultra.Web.Controllers.Api
             Guid? userId = null;
             if (result == SignInStatus.Success)
             {
-                ApplicationUser user = UserManager.FindByName(model.Email);
+                var user = UserManager.FindByName(model.Email);
                 userId = Guid.Parse(user.Id);
             }
             return Request.CreateResponse(HttpStatusCode.OK, new LoginResponseDTO
             {
                 UserId = userId,
-                Status = result,
+                Status = result
             });
         }
 
         /// <summary>
-        /// Register (and login) new user 
+        ///     Register (and login) new user
         /// </summary>
         /// <param name="model"></param>
-        /// <response code="400" cref="RegisterResponseDTO">Bad request</response >
-        /// <response code="200" cref="RegisterResponseDTO"></response >
+        /// <response code="400" cref="RegisterResponseDTO">Bad request</response>
+        /// <response code="200" cref="RegisterResponseDTO"></response>
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
-        [SwaggerResponse(HttpStatusCode.OK,Type = typeof(RegisterResponseDTO))]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof (RegisterResponseDTO))]
         public async Task<HttpResponseMessage> Register(RegisterParams model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -116,7 +107,7 @@ namespace Ultra.Web.Controllers.Api
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     Please.Tell(new UserRegistered(Guid.Parse(user.Id), model.CarId, model.FirstName, model.LastName));
-                    return Request.CreateResponse(HttpStatusCode.OK, new RegisterResponseDTO()
+                    return Request.CreateResponse(HttpStatusCode.OK, new RegisterResponseDTO
                     {
                         UserId = Guid.Parse(user.Id)
                     });
@@ -126,14 +117,13 @@ namespace Ultra.Web.Controllers.Api
 
             // If we got this far, something failed, redisplay form
             //todo add error model
-            return Request.CreateResponse((HttpStatusCode)422, ModelState);
+            return Request.CreateResponse((HttpStatusCode) 422, ModelState);
         }
 
-
         /// <summary>
-        /// Log off current user
+        ///     Log off current user
         /// </summary>
-        /// <response code="200"></response >
+        /// <response code="200"></response>
         [HttpPost]
         [AllowAnonymous]
         [Route("logoff")]
@@ -143,7 +133,6 @@ namespace Ultra.Web.Controllers.Api
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
 
         protected override void Dispose(bool disposing)
         {
@@ -166,15 +155,13 @@ namespace Ultra.Web.Controllers.Api
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
         {
-            get
-            {
-                return HttpContext.Current.GetOwinContext().Authentication;
-            }
+            get { return HttpContext.Current.GetOwinContext().Authentication; }
         }
 
         private void AddErrors(IdentityResult result)
@@ -218,8 +205,10 @@ namespace Ultra.Web.Controllers.Api
 
         [Required]
         public string CarId { get; set; }
+
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
     }
@@ -228,5 +217,4 @@ namespace Ultra.Web.Controllers.Api
     {
         public Guid UserId { get; set; }
     }
-
 }

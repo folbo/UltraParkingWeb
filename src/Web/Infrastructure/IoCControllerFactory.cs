@@ -16,9 +16,9 @@ namespace Ultra.Web.Infrastructure
 
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
-            if (typeof(Controller).IsAssignableFrom(controllerType))
+            if (typeof (Controller).IsAssignableFrom(controllerType))
             {
-                return (IController)_container.Resolve(controllerType);
+                return (IController) _container.Resolve(controllerType);
             }
 
             return base.GetControllerInstance(requestContext, controllerType);

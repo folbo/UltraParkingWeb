@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
+using Ultra.Web;
 
-[assembly: OwinStartup(typeof(Ultra.Web.Startup))]
+[assembly: OwinStartup(typeof (Startup))]
 
 namespace Ultra.Web
 {

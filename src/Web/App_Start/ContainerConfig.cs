@@ -5,7 +5,7 @@ using Ultra.Core;
 
 namespace Ultra.Web
 {
-    class ContainerConfig
+    internal class ContainerConfig
     {
         public static IWindsorContainer CreateContainer()
         {

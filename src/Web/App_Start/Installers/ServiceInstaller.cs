@@ -15,28 +15,24 @@ namespace Ultra.Web.Installers
             container.Register(
                 Classes
                     .FromAssemblyInThisApplication()
-                    .BasedOn(typeof(ICommandHandler<>))
+                    .BasedOn(typeof (ICommandHandler<>))
                     .LifestyleTransient()
                     .WithServiceBase(),
-
                 Classes
                     .FromAssemblyInThisApplication()
-                    .BasedOn(typeof(IEventHandler<>))
+                    .BasedOn(typeof (IEventHandler<>))
                     .LifestyleTransient()
                     .WithServiceBase(),
-
                 Classes
                     .FromAssemblyInThisApplication()
-                    .BasedOn(typeof(IQueryPerformer<,>))
+                    .BasedOn(typeof (IQueryPerformer<,>))
                     .LifestyleTransient()
                     .WithServiceBase(),
-
                 Component.For<ICommandBus>().ImplementedBy<CommandBus>(),
                 Component.For<IEventBus>().ImplementedBy<EventBus>(),
                 Component.For<IQueryBus>().ImplementedBy<QueryBus>(),
                 Component.For<IAssistant>().ImplementedBy<Assistant>(),
                 Component.For<IDateTimeGetter>().ImplementedBy<DateTimeGetter>()
-                
                 );
         }
     }

@@ -10,17 +10,15 @@ namespace Ultra.Core.Domain.Entities
         {
         }
 
-        public Guid Id { get; set; }
         public Guid SegmentId { get; set; }
         public Guid ParkingId { get; set; }
-
         public virtual ParkingSegment Segment { get; set; }
         public virtual Parking Parking { get; set; }
-
         public Status Status { get; set; }
         public DateTime? StartTime { get; set; }
         public Guid? DriverId { get; set; }
         public int Number { get; set; }
+        public Guid Id { get; set; }
 
         public static ParkingPlace Create(ParkingSegment segment)
         {
@@ -73,7 +71,8 @@ namespace Ultra.Core.Domain.Entities
         {
             if (DriverId != null)
             {
-                DomainEvents.Tell(new ParkingPlaceHasBeenReleased(StartTime.Value, DateTime.UtcNow, Id, DriverId.Value,ParkingId));
+                DomainEvents.Tell(new ParkingPlaceHasBeenReleased(StartTime.Value, DateTime.UtcNow, Id, DriverId.Value,
+                    ParkingId));
             }
             Status = Status.Free;
             StartTime = null;

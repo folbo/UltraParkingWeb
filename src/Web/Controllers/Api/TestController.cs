@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
-using Ultra.Core.Domain.Entities;
 using Ultra.Core.Domain.Queries;
 using Ultra.Core.Infrastructure.Data;
 using Ultra.Web.Infrastructure;
@@ -9,7 +8,7 @@ using Ultra.Web.Infrastructure;
 namespace Ultra.Web.Controllers.Api
 {
     /// <summary>
-    /// Controller to test web api features 
+    ///     Controller to test web api features
     /// </summary>
     [RoutePrefix("api/test")]
     public class TestController : BaseApiController
@@ -22,7 +21,7 @@ namespace Ultra.Web.Controllers.Api
         }
 
         /// <summary>
-        /// Method answer only to authorized requests 
+        ///     Method answer only to authorized requests
         /// </summary>
         /// <returns>string ok</returns>
         [Authorize]
@@ -34,7 +33,7 @@ namespace Ultra.Web.Controllers.Api
         }
 
         /// <summary>
-        /// sample method to get some data from serwer 
+        ///     sample method to get some data from serwer
         /// </summary>
         /// <returns></returns>
         [Authorize]
@@ -46,14 +45,13 @@ namespace Ultra.Web.Controllers.Api
             {
                 SampleString = "sample string",
                 SampleInt = 42,
-                SampleArray = new[] { "sample string1", "sample string2" },
+                SampleArray = new[] {"sample string1", "sample string2"},
                 SampleGuid = Guid.NewGuid()
             };
         }
 
-
         /// <summary>
-        /// Metoda zwalnia wszystkie miejsca parkingowe
+        ///     Metoda zwalnia wszystkie miejsca parkingowe
         /// </summary>
         /// <returns></returns>
         [Authorize]

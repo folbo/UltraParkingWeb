@@ -4,29 +4,29 @@
         <span class="hidden-xs">Login</span>
     </a>
     <ul class="dropdown-menu">
-            <li class="login-header">
-                <p>
-                    Login
-                </p>
-                <div style="margin-bottom: 15px">
-                    <input type="text" class="form-control" placeholder="login" data-bind="value:Email" />
-                </div>
-                <div style="margin-bottom: 15px">
-                    <input type="password" class="form-control" placeholder="password" data-bind="value:Password"/>
-                </div>
-                <div class="checkbox" style="margin-bottom: 15px">
-                    <input type="checkbox" id="RememberMe" data-bind="value:RememberMe"/>
-                    <label for="RememberMe">Zapamiętaj mnie</label>
-                </div>
-            </li>
-            <li class="user-footer">
-                <div class="pull-left">
-                    <a href="@Url.Action("Register","Account",new {Area=""})" class="btn btn-primary">Zarejestruj się</a>
-                </div>
-                <div class="pull-right">
-                    <input type="submit" value="Log in" class="btn btn-default" data-bind="click:Login"/>
-                </div>
-            </li>
+        <li class="login-header">
+            <p>
+                Login
+            </p>
+            <div style="margin-bottom: 15px">
+                <input type="text" class="form-control" placeholder="login" data-bind="value:Email"/>
+            </div>
+            <div style="margin-bottom: 15px">
+                <input type="password" class="form-control" placeholder="password" data-bind="value:Password"/>
+            </div>
+            <div class="checkbox" style="margin-bottom: 15px">
+                <input type="checkbox" id="RememberMe" data-bind="value:RememberMe"/>
+                <label for="RememberMe">Zapamiętaj mnie</label>
+            </div>
+        </li>
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="@Url.Action("Register", "Account", new {Area = ""})" class="btn btn-primary">Zarejestruj się</a>
+            </div>
+            <div class="pull-right">
+                <input type="submit" value="Log in" class="btn btn-default" data-bind="click:Login"/>
+            </div>
+        </li>
 
     </ul>
 </li>

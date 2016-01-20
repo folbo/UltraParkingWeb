@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
-using Castle.Windsor;
 using Ultra.Core;
 
 namespace Ultra.Web.Infrastructure
@@ -33,7 +32,8 @@ namespace Ultra.Web.Infrastructure
                 _toBeReleased.Add(resolved);
             }
             catch (Exception)
-            { }
+            {
+            }
             return resolved;
         }
 
@@ -45,7 +45,8 @@ namespace Ultra.Web.Infrastructure
                 resolve = IoC.ResolveAll(serviceType);
             }
             catch (Exception)
-            { }
+            {
+            }
             if (resolve != null)
             {
                 resolve.ToList()

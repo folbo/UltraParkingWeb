@@ -64,17 +64,14 @@
 <div class="col-md-4">
 
 
-
     <div class="box box-info">
         <div class="box-header">
             Lokalizacja
-            <input type="button" value="Zaktualizuj" class="btn btn-flat btn-info pull-right" data-bind="click:UpdateLocation" />
+            <input type="button" value="Zaktualizuj" class="btn btn-flat btn-info pull-right" data-bind="click:UpdateLocation"/>
         </div>
         <div class="box-body">
             <style>
-                .map {
-                    height: 400px;
-                }
+                .map { height: 400px; }
             </style>
             <div class="map" data-bind="googlemap: { latitude: Latitude, longitude: Longitude }"></div>
         </div>
@@ -86,10 +83,6 @@
 <div>
     <a href="@Url.Action("Index")" class="btn btn-default"><i class="fa fa-backward"></i> Wróć do listy</a>
 </div>
-
-
-
-
 
 
 @section Scripts
@@ -116,15 +109,14 @@
                     SegmentId: self.Id(),
                     NewName: params.newValue,
                 }, "Nazwa segmentu została zaktualizowana");
-            }
-
+            };
             self.ResizeSegment = function(e, params) {
                 Ultra.postJson('@Url.Action("ResizeSegment")', {
                     ParkingId: self.Parking.Id(),
                     SegmentId: self.Id(),
                     AmountPlaces: params.newValue,
                 }, "Segment został przeskalowany");
-            }
+            };
         }
 
         function ParkingVM(json) {
@@ -157,8 +149,7 @@
                         self.NewSegmentName("");
                         self.NewSegmentPlacesCount(0);
                     });
-            }
-
+            };
             self.RemoveSegment = function(segment) {
                 Ultra.postJson('@Url.Action("RemoveSegment")', {
                         ParkingId: self.Id(),
@@ -167,36 +158,32 @@
                     .success(function(data) {
                         self.Segments.remove(segment);
                     });
-            }
-
+            };
             self.RenameParking = function(e, params) {
                 Ultra.postJson('@Url.Action("RenameParking")', {
                     ParkingId: self.Id(),
                     NewName: params.newValue,
                 }, "Nazwa parkingu została zmieniona");
 
-            }
-
+            };
             self.UpdateLocation = function() {
                 Ultra.postJson('@Url.Action("UpdateLocation")', {
                     ParkingId: self.Id(),
                     Latitude: self.Latitude(),
                     Longitude: self.Longitude(),
                 }, "Lokalizacja parkingu została zaktualizowana");
-            }
-
+            };
             self.ChangeParkingOwner = function(e, params) {
                 Ultra.postJson('@Url.Action("ChangeParkingOwner")', {
                     ParkingId: self.Id(),
                     NewOwnerName: params.newValue,
                 }, "Właściciel parkingu został zmieniony");
-            }
-
+            };
             self.ChangeOwnerEditableOptions = {
                 tpl: '<select style="width:150px;"></select>',
                 save: self.ChangeParkingOwner,
                 type: 'select2',
-                display: function (value) {
+                display: function(value) {
                     $("#owner-name").html(value);
                 },
                 select2: {
@@ -213,15 +200,14 @@
                         processResults: function(data, page) {
                             return {
                                 results: $.map(data, function(item) {
-                                    return { text: item.Name, id: item.Name }
+                                    return { text: item.Name, id: item.Name };
                                 })
                             };
                         },
                         cache: true
                     },
                 }
-            }
-
+            };
             self.DeleteParking = function() {
                 bootbox.confirm({
                     title: 'Usuwanie parkingu',
@@ -247,7 +233,7 @@
                         }
                     }
                 });
-            }
+            };
         }
 
         var model = JSON.parse(@Html.ModelToJSon(Model));

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -13,7 +9,7 @@ namespace Ultra.Web.Areas.Admin.Controllers
 {
     public class TestController : Controller
     {
-        private CoreDbContext DbContext;
+        private readonly CoreDbContext DbContext;
 
         public TestController(CoreDbContext dbContext)
         {
@@ -25,7 +21,7 @@ namespace Ultra.Web.Areas.Admin.Controllers
         {
             AddRoleIfNotExist("Admin");
             AddUserToRole(User.Identity.GetUserId(), "Admin");
-            
+
 
             return RedirectToAction("Index", "Home", new {Area = ""});
         }

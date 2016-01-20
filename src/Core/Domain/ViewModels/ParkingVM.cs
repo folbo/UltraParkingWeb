@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Spatial;
-using Ultra.Core.Domain.Entities;
 
 namespace Ultra.Core.Domain.ViewModels
 {
@@ -9,12 +7,12 @@ namespace Ultra.Core.Domain.ViewModels
     {
         public ParkingVM()
         {
-            Segments=new List<ParkingSegmentVM>();
+            Segments = new List<ParkingSegmentVM>();
         }
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public IList<ParkingSegmentVM> Segments { get; set; } 
+        public IList<ParkingSegmentVM> Segments { get; set; }
         public Guid OwnerId { get; set; }
         public string OwnerName { get; set; }
         public double Latitude { get; set; }

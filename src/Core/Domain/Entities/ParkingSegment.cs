@@ -12,12 +12,11 @@ namespace Ultra.Core.Domain.Entities
             Places = new List<ParkingPlace>();
         }
 
-        public Guid Id { get; set; }
         public Guid ParkingId { get; protected set; }
-
         public string Name { get; protected set; }
         public virtual ICollection<ParkingPlace> Places { get; protected set; }
         public virtual Parking Parking { get; protected set; }
+        public Guid Id { get; set; }
 
         public void Rename(string newName)
         {

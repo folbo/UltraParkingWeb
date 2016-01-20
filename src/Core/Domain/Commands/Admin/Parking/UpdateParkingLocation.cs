@@ -16,7 +16,7 @@ namespace Ultra.Core.Domain.Commands.Admin.Parking
         public override void Execute(UpdateParkingLocation command)
         {
             var parking = Please.Give(new ParkingAggregate(command.ParkingId));
-            parking.UpdateLocation(command.Latitude,command.Longitude);
+            parking.UpdateLocation(command.Latitude, command.Longitude);
             Data.SaveChanges();
         }
     }

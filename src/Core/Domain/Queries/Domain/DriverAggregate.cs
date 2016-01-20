@@ -21,7 +21,7 @@ namespace Ultra.Core.Domain.Queries.Domain
         public override Driver Perform(DriverAggregate query)
         {
             return Data.Drivers
-                .Include(p=>p.Payments)
+                .Include(p => p.Payments)
                 .First(x => x.Id == query.DriverId);
         }
     }

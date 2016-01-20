@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ultra.Core.Infrastructure.Events;
 
 namespace Ultra.Core.Domain.Events
@@ -20,11 +16,11 @@ namespace Ultra.Core.Domain.Events
             ParkingId = parkingId;
         }
 
-        public Guid EventId { get; }
         public DateTime From { get; }
         public DateTime To { get; }
         public Guid ParkingPlaceId { get; }
         public Guid DriverId { get; }
         public Guid ParkingId { get; set; }
+        public Guid EventId { get; }
     }
 }

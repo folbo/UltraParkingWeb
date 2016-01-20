@@ -11,7 +11,6 @@ namespace Ultra.Core.Domain.Entities
             Payments = new List<DriverPayment>();
         }
 
-        public Guid Id { get; protected set; }
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
 
@@ -25,13 +24,13 @@ namespace Ultra.Core.Domain.Entities
         /// </summary>
         public string CarId { get; protected set; }
 
-        public ICollection<DriverPayment> Payments { get; protected set; } 
-
+        public ICollection<DriverPayment> Payments { get; protected set; }
+        public Guid Id { get; protected set; }
 
         public void AddPayment(DateTime startTime, DateTime endTime, Guid parkingPlaceId, Guid parkingId, decimal price)
         {
             Currency -= price;
-            var payment = DriverPayment.Create(this,startTime,endTime,parkingPlaceId,parkingId,price);
+            var payment = DriverPayment.Create(this, startTime, endTime, parkingPlaceId, parkingId, price);
             Payments.Add(payment);
 
             //if (Currency<0){DomainEvents.Tell();} todo
@@ -39,13 +38,13 @@ namespace Ultra.Core.Domain.Entities
 
         public static Driver Create(Guid id, string carId, string firstName, string lastName)
         {
-            return new Driver()
+            return new Driver
             {
                 Id = id,
                 CarId = carId,
                 Currency = 0,
                 FirstName = firstName,
-                LastName = lastName,
+                LastName = lastName
             };
         }
     }

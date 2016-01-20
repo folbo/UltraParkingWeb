@@ -17,7 +17,7 @@ namespace Ultra.Core.Domain.Commands.Admin.Parking
         public override void Execute(AddSegment command)
         {
             var parking = Please.Give(new ParkingAggregate(command.ParkingId));
-            parking.AddSegment(command.Name,command.AmountPlaces,command.NewId);
+            parking.AddSegment(command.Name, command.AmountPlaces, command.NewId);
             Data.SaveChanges();
         }
     }

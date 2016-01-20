@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Spatial;
-using Ultra.Core.Domain.Entities;
 
 namespace Ultra.Core.Domain.DTO
 {

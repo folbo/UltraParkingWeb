@@ -33,6 +33,7 @@ namespace Ultra.Core
         {
             return _container.ResolveAll<T>();
         }
+
         public static IEnumerable<object> ResolveAll(Type service)
         {
             return _container.ResolveAll(service).Cast<object>();

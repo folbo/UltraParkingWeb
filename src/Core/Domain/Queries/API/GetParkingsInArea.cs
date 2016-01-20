@@ -19,7 +19,9 @@ namespace Ultra.Core.Domain.Queries.API
     {
         public override IEnumerable<ParkingDTO> Perform(GetParkingsInArea query)
         {
-            var userLocation = DbGeography.FromText($"Point({query.Latitude.ToString(CultureInfo.InvariantCulture)} {query.Longitude.ToString(CultureInfo.InvariantCulture)})");
+            var userLocation =
+                DbGeography.FromText(
+                    $"Point({query.Latitude.ToString(CultureInfo.InvariantCulture)} {query.Longitude.ToString(CultureInfo.InvariantCulture)})");
             return Data.Parkings
                 .Where(parking => userLocation.Distance(parking.Location) < query.Radius)
                 .ProjectTo<ParkingDTO>()

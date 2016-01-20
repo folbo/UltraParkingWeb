@@ -1,5 +1,4 @@
 ﻿using System;
-using Ultra.Core.Domain.Queries;
 using Ultra.Core.Infrastructure.Commands;
 
 namespace Ultra.Core.Domain.Commands.Admin.Parking

@@ -1,5 +1,4 @@
 ﻿using System;
-using Ultra.Core.Domain.Queries;
 using Ultra.Core.Infrastructure.Commands;
 
 namespace Ultra.Core.Domain.Commands.Admin.Parking
@@ -14,7 +13,7 @@ namespace Ultra.Core.Domain.Commands.Admin.Parking
     {
         public override void Execute(AddParking command)
         {
-            var parking = Entities.Parking.Create(command.Name,command.newId);
+            var parking = Entities.Parking.Create(command.Name, command.newId);
             Data.Parkings.Add(parking);
             Data.SaveChanges();
         }

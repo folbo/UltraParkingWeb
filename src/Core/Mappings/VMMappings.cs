@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Ultra.Core.Domain.DTO;
+﻿using AutoMapper;
 using Ultra.Core.Domain.Entities;
 using Ultra.Core.Domain.ViewModels;
 

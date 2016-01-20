@@ -14,10 +14,10 @@ namespace Ultra.Core.Domain.Events
             LastName = lastName;
         }
 
-        public Guid EventId { get; }
         public Guid UserId { get; }
         public string CarId { get; }
         public string FirstName { get; }
         public string LastName { get; }
+        public Guid EventId { get; }
     }
 }

@@ -11,7 +11,7 @@ namespace Ultra.Web.Infrastructure
             if (model == null)
                 return new MvcHtmlString("'null'");
 
-            string json = JsonConvert.SerializeObject(model);
+            var json = JsonConvert.SerializeObject(model);
             json = HttpUtility.JavaScriptStringEncode(json, true);
 
             return new MvcHtmlString(json);

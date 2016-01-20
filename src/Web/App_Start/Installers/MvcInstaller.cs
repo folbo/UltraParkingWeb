@@ -12,13 +12,13 @@ namespace Ultra.Web.Installers
         {
             container.Register(
                 Classes.FromThisAssembly()
-                       .BasedOn<Controller>()
-                       .Configure(c => c.LifestyleTransient())
+                    .BasedOn<Controller>()
+                    .Configure(c => c.LifestyleTransient())
                 );
             container.Register(
                 Classes.FromThisAssembly()
-                       .BasedOn<ApiController>()
-                       .Configure(c => c.LifestyleTransient())
+                    .BasedOn<ApiController>()
+                    .Configure(c => c.LifestyleTransient())
                 );
         }
     }

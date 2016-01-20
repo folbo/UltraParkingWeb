@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Linq;
-using Ultra.Core.Domain.Entities;
 using Ultra.Core.Infrastructure.Queries;
 
 namespace Ultra.Core.Domain.Queries

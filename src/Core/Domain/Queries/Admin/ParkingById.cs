@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Ultra.Core.Domain.Entities;
 using Ultra.Core.Domain.ViewModels;
 using Ultra.Core.Infrastructure.Queries;
 

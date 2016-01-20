@@ -21,8 +21,8 @@ namespace Ultra.Core.Domain.Queries
         public override Parking Perform(ParkingAggregate query)
         {
             return Data.Parkings
-                .Include(p=>p.Segments)
-                .Include(p=>p.Segments.Select(s=>s.Places))
+                .Include(p => p.Segments)
+                .Include(p => p.Segments.Select(s => s.Places))
                 .First(x => x.Id == query.Id);
         }
     }

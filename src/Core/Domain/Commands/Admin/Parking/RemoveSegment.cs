@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Ultra.Core.Domain.Queries;
 using Ultra.Core.Infrastructure.Commands;
 

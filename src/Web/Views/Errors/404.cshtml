@@ -1,17 +1,16 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "404 Nie znaleziono";
 }
 
 <div class="error-page">
     <h2 class="headline text-yellow">[404]</h2>
     <div class="error-content">
-        <h3><i class="fa fa-warning text-yellow"></i> Oops! Nie znaleziono storny.</h3>
+        <h3>
+            <i class="fa fa-warning text-yellow"></i> Oops! Nie znaleziono storny.
+        </h3>
         <p>
             Nie mogliśmy odnaleźć strony której szukasz .
-            Tymczasem, możesz <a href="@Url.Action("Index","Home")">wrócić na stronę główną</a>
+            Tymczasem, możesz <a href="@Url.Action("Index", "Home")">wrócić na stronę główną</a>
         </p>
-     </div><!-- /.error-content -->
+    </div><!-- /.error-content -->
 </div><!-- /.error-page -->
-
-
