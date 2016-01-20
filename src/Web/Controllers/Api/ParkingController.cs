@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 using Swashbuckle.Swagger.Annotations;
 using Ultra.Core.Domain.Commands.Client;
 using Ultra.Core.Domain.DTO;
@@ -65,8 +66,10 @@ namespace Ultra.Web.Controllers.Api
         [HttpPost]
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof (ParkingPlaceDTO))]
         [SwaggerResponse(422, Type = typeof (void))]
+        [Authorize]
         public HttpResponseMessage Book(BookPlace command)
         {
+            command.UserId = Guid.Parse(User.Identity.GetUserId());
             Please.Do(command);
             var place = command.ReturnValue;
             return place == null

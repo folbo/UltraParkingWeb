@@ -17,7 +17,12 @@ namespace Ultra.Core.Domain.Commands.Client
     {
         public override void Execute(BookPlace command)
         {
+            if (command.UserId == Guid.Empty) throw new Exception();
             if (Please.Check(new UserHaveActiveBooking(command.UserId)))
+            {
+                throw new InvalidOperationException();
+            }
+            if (Please.Check(new UserHaveEnoughMoneyToBook(command.UserId)))
             {
                 throw new InvalidOperationException();
             }

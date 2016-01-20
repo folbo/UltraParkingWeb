@@ -96,6 +96,7 @@
     <Compile Include="Domain\Queries\API\GetParkings.cs" />
     <Compile Include="Domain\Queries\Admin\AllParkings.cs" />
     <Compile Include="Domain\Queries\Domain\ParkingAggregate.cs" />
+    <Compile Include="Domain\Queries\UserHaveEnoughMoneyToBook.cs" />
     <Compile Include="Domain\Queries\UserHaveActiveBooking.cs" />
     <Compile Include="Domain\Queries\Domain\DriverAggregate.cs" />
     <Compile Include="Domain\ViewModels\DriverVM.cs" />

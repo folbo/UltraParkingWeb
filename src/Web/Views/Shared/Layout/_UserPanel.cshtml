@@ -30,14 +30,14 @@
         <!-- Menu Footer-->
         <li class="user-footer">
             <div class="pull-left">
-                @using (Html.BeginForm("Index", "Manage"))
+                @using (Html.BeginForm("Index", "Manage", new { Area = "" }))
                 {
                     @Html.AntiForgeryToken()
                     <button class="btn btn-default btn-flat" type="submit">Profile</button>
                 }
             </div>
             <div class="pull-right">
-                @using (Html.BeginForm("LogOff", "Account"))
+                @using (Html.BeginForm("LogOff", "Account", new { Area = "" }))
                 {
                     @Html.AntiForgeryToken()
                     <button class="btn btn-default btn-flat" type="submit">Wyloguj</button>
