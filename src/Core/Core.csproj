@@ -90,6 +90,7 @@
     <Compile Include="Domain\EventHandlers\SettlementReservation.cs" />
     <Compile Include="Domain\Events\PlaceHasBeenReleased.cs" />
     <Compile Include="Domain\Events\UserRegistered.cs" />
+    <Compile Include="Domain\Queries\Admin\AllTransactions.cs" />
     <Compile Include="Domain\Queries\Admin\ParkingById.cs" />
     <Compile Include="Domain\Queries\API\GetParkingsInArea.cs" />
     <Compile Include="Domain\Queries\API\GetParkingById.cs" />

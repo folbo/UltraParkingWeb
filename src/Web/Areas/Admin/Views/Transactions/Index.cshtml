@@ -1,0 +1,67 @@
+﻿@using Humanizer
+@using Humanizer.Localisation
+@model IEnumerable<Ultra.Core.Domain.ViewModels.PaymentVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h2>Index</h2>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table">
+            <tr>
+                <th>
+                    Kierowca
+                </th>
+                <th>
+                    Godzina rozpoczęcia
+                </th>
+                <th>
+                    Godzina zakończenia
+                </th>
+                <th>
+                    Czas rezerwacji
+                </th>
+                <th class="text-right">
+                    Opłata
+                </th>
+            </tr>
+
+            @foreach (var group in Model.GroupBy(vm => vm.ParkingName))
+            {
+                <tr class="info">
+                    <td colspan="4">
+                        @group.Key
+                    </td>
+                    <td class="text-right">Suma @group.Sum(vm => vm.Price)</td>
+                </tr>
+                foreach (var item in group)
+                {
+                    <tr>
+                        <td>
+                            @item.DriverName
+                        </td>
+                        <td>
+                            @item.StartTime
+                        </td>
+                        <td>
+                            @item.EndTime
+                        </td>
+                        <td>
+                            @item.BookingTime.Humanize(100, false, null, TimeUnit.Year, TimeUnit.Minute)
+                        </td>
+                        <td class="text-right">
+                            @item.Price
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </table>
+
+    </div>
+</div>
