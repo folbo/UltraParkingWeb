@@ -1,6 +1,6 @@
 ﻿namespace Ultra.Core.Infrastructure.Events
 {
-    public interface IEventHandler<in TEvent> where TEvent:IEvent
+    public interface IEventHandler<in TEvent> where TEvent : IEvent
     {
         void Handle(TEvent @event);
     }

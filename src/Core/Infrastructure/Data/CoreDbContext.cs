@@ -1,7 +1,5 @@
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
-using System.Diagnostics;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Ultra.Core.Domain.Entities;
 
@@ -11,18 +9,16 @@ namespace Ultra.Core.Infrastructure.Data
     {
         public CoreDbContext() : base(IoC.Resolve<CoreDbContextConnectionString>().ConnectionString)
         {
-            Database.SetInitializer<CoreDbContext>(
+            Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<CoreDbContext, CoreDbConfiguration>());
         }
 
         public virtual DbSet<Parking> Parkings { get; set; }
         public virtual DbSet<ParkingPlace> ParkingsPlaces { get; set; }
         public virtual DbSet<ParkingSegment> ParkingSegments { get; set; }
-
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<DriverPayment> DriverPayments { get; set; }
         public virtual DbSet<Owner> Owners { get; set; }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

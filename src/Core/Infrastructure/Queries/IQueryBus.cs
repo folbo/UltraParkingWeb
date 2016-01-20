@@ -8,12 +8,12 @@
 
     public class QueryBus : IQueryBus
     {
-        public TResult Perform<TResult>(IQuery<TResult> query) 
+        public TResult Perform<TResult>(IQuery<TResult> query)
         {
-            var handlerType = typeof(IQueryPerformer<,>).MakeGenericType(query.GetType(), typeof(TResult));
+            var handlerType = typeof (IQueryPerformer<,>).MakeGenericType(query.GetType(), typeof (TResult));
 
             var performer = IoC.Resolve(handlerType);
-            return (TResult)((dynamic)performer).Perform((dynamic)query);
+            return (TResult) ((dynamic) performer).Perform((dynamic) query);
         }
 
         public bool Check(IQuery<bool> check)
@@ -26,6 +26,4 @@
             var newObject = givenObject as T;
         }
     }
-
-
 }

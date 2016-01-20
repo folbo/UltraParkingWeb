@@ -5,7 +5,8 @@
         TResult Perform(TQuery query);
     }
 
-    public abstract class QueryPerformer<TQuery,TResult> : Base, IQueryPerformer<TQuery,TResult> where TQuery : IQuery<TResult>
+    public abstract class QueryPerformer<TQuery, TResult> : Base, IQueryPerformer<TQuery, TResult>
+        where TQuery : IQuery<TResult>
     {
         public abstract TResult Perform(TQuery query);
     }

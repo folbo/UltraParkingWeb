@@ -8,10 +8,10 @@ namespace Ultra.Core.Infrastructure.Commands
     {
         private CommandResult(List<ValidationError> validationErrors)
         {
-            this.ValidationErrors = validationErrors ?? new List<ValidationError>();
+            ValidationErrors = validationErrors ?? new List<ValidationError>();
         }
 
-        public List<ValidationError> ValidationErrors { get; private set; }
+        public List<ValidationError> ValidationErrors { get; }
         public bool WasSuccessful() => !ValidationErrors.Any();
 
         public static CommandResult Success()
