@@ -6,6 +6,7 @@ using Ultra.Web.Infrastructure;
 
 namespace Ultra.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ParkingController : BaseController
     {
         public ActionResult Index()
