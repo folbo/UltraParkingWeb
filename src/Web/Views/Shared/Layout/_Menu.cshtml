@@ -19,7 +19,23 @@
             {
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-link"></i> <span>Administracja</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-link"></i> <span>Przegląd parkingów</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="@Url.Action("Index", "Parking", new {Area = "Owner"})">Lista parkingow</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Transactions", new {Area = "Owner"})">Lista transakcji</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Administracja stroną</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li>

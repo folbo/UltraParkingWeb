@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Ultra.Core.Domain.ViewModels.ParkingInfoVM>
+
+@{
+    ViewBag.Title = "Zarządzaj parkingami";
+}
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <h2>
+            Parkingi
+        </h2>
+
+
+    </div>
+
+    <div class="box-body no-padding">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-right">
+                        <a class="btn btn-flat bg-aqua" href="@Url.Action("Edit", new {item.Id})"><i class="fa fa-edit"></i> Edytuj</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</div>

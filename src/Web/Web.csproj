@@ -215,6 +215,8 @@
     <Compile Include="Areas\Admin\Controllers\ParkingController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\TransactionsController.cs" />
+    <Compile Include="Areas\Owner\Controllers\ParkingController.cs" />
+    <Compile Include="Areas\Owner\Controllers\TransactionsController.cs" />
     <Compile Include="Areas\Owner\OwnerAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
@@ -986,6 +988,9 @@
     <Content Include="Content\AdminLTE\plugins\select2\i18n\zh-CN.js" />
     <Content Include="Content\AdminLTE\plugins\select2\i18n\zh-TW.js" />
     <Content Include="Areas\Owner\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Owner\Views\Parking\Index.cshtml" />
+    <Content Include="Areas\Owner\Views\Parking\Edit.cshtml" />
     <None Include="Content\AdminLTE\plugins\select2\select2.less" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.full.js" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.full.min.js" />
@@ -1163,9 +1168,9 @@
     <Content Include="Content\AdminLTE\less\toastr.less" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Parking\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Owner\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Parking\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Transactions\Index.cshtml" />
+    <Content Include="Areas\Owner\Views\Transactions\Index.cshtml" />
     <None Include="Content\jQuery\jquery-1.9.1.intellisense.js" />
     <Content Include="Content\bootstrap\bootstrap.js" />
     <Content Include="Content\jQuery\jquery-1.9.1.js" />
@@ -1217,7 +1222,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Test\" />
-    <Folder Include="Areas\Owner\Controllers\" />
     <Folder Include="Areas\Owner\Models\" />
     <Folder Include="Areas\Owner\Views\Shared\" />
   </ItemGroup>
