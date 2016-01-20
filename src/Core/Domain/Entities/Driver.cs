@@ -47,5 +47,20 @@ namespace Ultra.Core.Domain.Entities
                 LastName = lastName
             };
         }
+
+        public void UpdateCarId(string carId)
+        {
+            CarId = carId;
+        }
+
+        public void UpdateFirstName(string firstname)
+        {
+            FirstName = firstname;
+        }
+
+        public void UpdateLastName(string lastname)
+        {
+            LastName = lastname;
+        }
     }
 }

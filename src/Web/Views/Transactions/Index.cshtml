@@ -1,0 +1,57 @@
+﻿@using Humanizer
+@using Humanizer.Localisation
+@model IEnumerable<Ultra.Core.Domain.ViewModels.PaymentVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="box box-info">
+    <div class="box-header">
+        <h2>Index</h2>
+    </div>
+    <div class="box-body no-padding">
+        <table class="table">
+            <tr>
+                <th>
+                    Parking
+                </th>
+                <th>
+                    Godzina rozpoczęcia
+                </th>
+                <th>
+                    Godzina zakończenia
+                </th>
+                <th>
+                    Czas rezerwacji
+                </th>
+                <th class="text-right">
+                    Opłata
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+ 
+                    <tr>
+                        <td>
+                            @item.ParkingName
+                        </td>
+                        <td>
+                            @item.StartTime
+                        </td>
+                        <td>
+                            @item.EndTime
+                        </td>
+                        <td>
+                            @item.BookingTime.Humanize(100, false, null, TimeUnit.Year, TimeUnit.Minute)
+                        </td>
+                        <td class="text-right">
+                            @item.Price
+                        </td>
+                    </tr>
+                }
+        </table>
+
+    </div>
+</div>

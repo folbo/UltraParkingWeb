@@ -79,6 +79,9 @@
     <Compile Include="Domain\Commands\Admin\Parking\ChangeParkingOwner.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\UpdateParkingLocation.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RenameParking.cs" />
+    <Compile Include="Domain\Commands\Client\ChangeCarIdName.cs" />
+    <Compile Include="Domain\Commands\Client\ChangeLastName.cs" />
+    <Compile Include="Domain\Commands\Client\ChangeFirstName.cs" />
     <Compile Include="Domain\Commands\Client\BookPlace.cs" />
     <Compile Include="Domain\DTO\ParkingPlaceDTO.cs" />
     <Compile Include="Domain\DTO\ParkingDTO.cs" />
@@ -102,8 +105,10 @@
     <Compile Include="Domain\Queries\API\GetParkings.cs" />
     <Compile Include="Domain\Queries\Admin\AllParkings.cs" />
     <Compile Include="Domain\Queries\Domain\ParkingAggregate.cs" />
+    <Compile Include="Domain\Queries\UsersTransactions.cs" />
     <Compile Include="Domain\Queries\Owner\OwnerParkings.cs" />
     <Compile Include="Domain\Queries\Owner\OwnerTransactions.cs" />
+    <Compile Include="Domain\Queries\DriverInfo.cs" />
     <Compile Include="Domain\Queries\UserHaveEnoughMoneyToBook.cs" />
     <Compile Include="Domain\Queries\UserHaveActiveBooking.cs" />
     <Compile Include="Domain\Queries\Domain\DriverAggregate.cs" />

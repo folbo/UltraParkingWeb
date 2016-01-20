@@ -37,7 +37,7 @@ namespace Ultra.Core.Domain.Queries.Owner
                         Price = payment.Price,
                         ParkingName = parking.Name
                     })
-                .OrderBy(vm => vm.StartTime);
+                .OrderByDescending(vm => vm.StartTime);
         }
     }
 }

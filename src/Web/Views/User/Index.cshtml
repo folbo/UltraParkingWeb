@@ -1,0 +1,77 @@
+﻿@using Ultra.Web.Infrastructure
+@model Ultra.Core.Domain.ViewModels.DriverVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-md-8">
+    <div class="box box-success">
+        <div class="box-header">
+            Podstawowe Informacje
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label>Imię</label>
+                <span data-bind="editable:FirstName,editableOptions:{save:ChangeFirstName}"></span>
+            </div>
+            <div class="form-group">
+                <label>Nazwisko</label>
+                <span data-bind="editable:LastName,editableOptions:{save:ChangeLastName}"></span>
+            </div>
+            <div class="form-group">
+                <label>Rejestracja samochodu</label>
+                <span data-bind="editable:CarId,editableOptions:{save:ChangeCarId}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="info-box">
+        <span class="info-box-icon bg-green" data-bind="css: {  'bg-red': Currency() < 0 ,'bg-orange': Currency() < 20 && Currency() >=0, 'bg-green': Currency() >= 20  }"><i class="fa fa-usd"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Stan konta</span>
+            <span class="info-box-number" data-bind="text:Currency"></span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
+</div>
+
+@section Scripts
+{
+
+
+    <script src="~/Content/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <script src="~/Content/ko/bindings/knockout.x-editable.js"></script>
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false&.js"></script>
+    <script src="~/Content/ko/bindings/googlemapBinding.js"></script>
+
+    <script>
+        function UserVM(json) {
+            var self = this;
+
+            ko.mapping.fromJS(json, null, this);
+
+            self.ChangeFirstName = function(e,params) {
+                Ultra.postJson('@Url.Action("ChangeFirstName")', {
+                    FirstName: params.newValue,
+                }, "Imię zostało zaktualizowane");
+            };
+            self.ChangeLastName = function (e, params) {
+                Ultra.postJson('@Url.Action("ChangeLastName")', {
+                    LastName: params.newValue,
+                }, "Nazwisko zostało zaktualizowane");
+            };
+            self.ChangeCarId = function (e, params) {
+                Ultra.postJson('@Url.Action("ChangeCarId")', {
+                    CarId: params.newValue,
+                }, "Rejestracja samochodu została zaktualizowana");
+            };
+        }
+
+        var model = JSON.parse(@Html.ModelToJSon(Model));
+        ko.applyBindings(new UserVM(model), document.getElementById("page-content"));
+    </script>
+}

@@ -18,6 +18,7 @@ namespace Ultra.Web.Areas.Owner
                 "Owner_default",
                 "Owner/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
+                 , new[] { "Ultra.Web.Owner.Controllers" }
             );
         }
     }

@@ -18,6 +18,7 @@ namespace Ultra.Core.Mappings
 
             Mapper.CreateMap<ParkingSegment, ParkingSegmentVM>();
             Mapper.CreateMap<Owner, OwnerVM>();
+            Mapper.CreateMap<Driver, DriverVM>();
 
 
             //Mapper.CreateMap<Parking, ParkingDTO>();

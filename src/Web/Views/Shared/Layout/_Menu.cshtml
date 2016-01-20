@@ -5,16 +5,20 @@
         <ul class="sidebar-menu">
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active">
-                <a href="#">
-                    <i class="fa fa-link"></i> <span>Link</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-link"></i> <span>Another Link</span>
-                </a>
-            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="active">
+                    <a href="@Url.Action("Index", "User", new {Area = ""})">
+                        <i class="fa fa-link"></i> <span>Moje konto</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Index", "Transactions", new {Area = ""})">
+                        <i class="fa fa-link"></i> <span>Lista transakcji</span>
+                    </a>
+                </li>
+            }
             @if (User.IsInRole("Owner"))
             {
                 <li class="treeview">
