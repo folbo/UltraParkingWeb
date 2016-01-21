@@ -9,23 +9,9 @@
     <ul class="dropdown-menu">
         <!-- The user image in the menu -->
         <li class="user-header">
-            @*<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
             <p>
-                @HttpContext.Current.User.Identity.Name;
-                <small>Member since Nov. 2012</small>
+                @HttpContext.Current.User.Identity.Name
             </p>
-        </li>
-        <!-- Menu Body -->
-        <li class="user-body">
-            <div class="col-xs-4 text-center">
-                <a href="#">Followers</a>
-            </div>
-            <div class="col-xs-4 text-center">
-                <a href="#">Sales</a>
-            </div>
-            <div class="col-xs-4 text-center">
-                <a href="#">Friends</a>
-            </div>
         </li>
         <!-- Menu Footer-->
         <li class="user-footer">
@@ -33,14 +19,14 @@
                 @using (Html.BeginForm("Index", "Manage", new {Area = ""}))
                 {
                     @Html.AntiForgeryToken()
-                    <button class="btn btn-default btn-flat" type="submit">Profile</button>
+                    <button class="btn btn-info btn-flat" type="submit">Profile</button>
                 }
             </div>
             <div class="pull-right">
                 @using (Html.BeginForm("LogOff", "Account", new {Area = ""}))
                 {
                     @Html.AntiForgeryToken()
-                    <button class="btn btn-default btn-flat" type="submit">Wyloguj</button>
+                    <button class="btn btn-warning btn-flat" type="submit">Wyloguj</button>
                 }
             </div>
         </li>

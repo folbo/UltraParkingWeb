@@ -8,15 +8,19 @@
     "inputFile": "Content/bootstrap/bootstrap.less"
   },
   {
-    "outputFile": "Content/AdminLTE/less/AdminLTE.css",
-    "inputFile": "Content/AdminLTE/less/AdminLTE.less"
-  },
-  {
     "outputFile": "Content/AdminLTE/less/skins/skin-green.css",
     "inputFile": "Content/AdminLTE/less/skins/skin-green.less"
   },
   {
     "outputFile": "Content/AdminLTE/plugins/select2/select2.css",
     "inputFile": "Content/AdminLTE/plugins/select2/select2.less"
+  },
+  {
+    "outputFile": "Content/AdminLTE/less/AdminLTE.css",
+    "inputFile": "Content/AdminLTE/less/AdminLTE.less"
+  },
+  {
+    "outputFile": "Content/AdminLTE/less/skins/skin-blue.css",
+    "inputFile": "Content/AdminLTE/less/skins/skin-blue.less"
   }
 ]

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap3-editable/css/bootstrap-editable.css">
     <link rel="stylesheet" href="~/Content/fontawesome4/font-awesome.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/less/AdminLTE.min.css">
-    <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-green.min.css">
+    <link rel="stylesheet" href="~/Content/AdminLTE/less/skins/skin-blue.min.css">
     <link rel="stylesheet" href="~/Content/Site.min.css">
     <link rel="stylesheet" href="~/Content/AdminLTE/plugins/select2/select2.min.css">
     @RenderSection("CSS", false)
@@ -20,7 +20,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition fixed skin-green sidebar-mini">
+<body class="hold-transition fixed skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
         @Html.Partial("Layout/_Header")
@@ -100,6 +100,11 @@
             };
 
             ko.applyBindings(new LoginBox(), document.getElementById("login-box"));
+
+            $(".login-header").click(function (e) {
+                e.stopPropagation();
+                console.log("asd");
+            });
             </text>
         }
         });

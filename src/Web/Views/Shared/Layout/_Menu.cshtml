@@ -7,7 +7,7 @@
             <!-- Optionally, you can add icons to the links -->
             @if (User.Identity.IsAuthenticated)
             {
-                <li class="active">
+                <li>
                     <a href="@Url.Action("Index", "User", new {Area = ""})">
                         <i class="fa fa-user"></i> <span>Moje konto</span>
                     </a>
@@ -55,7 +55,9 @@
                 </li>
             }
             <li>
-                <a href="/swagger" target="_blank"><i class="fa fa-book"></i>Dokumantacja api</a>
+                <a href=""/swagger">
+                    <i class="fa fa-book"></i> <span>Dokumantacja api</span>
+                </a>
             </li>
         </ul><!-- /.sidebar-menu -->
     </section>
