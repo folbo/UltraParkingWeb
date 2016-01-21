@@ -28,13 +28,29 @@
 </div>
 <div class="col-md-4">
     <div class="info-box">
-        <span class="info-box-icon bg-green" data-bind="css: {  'bg-red': Currency() < 0 ,'bg-orange': Currency() < 20 && Currency() >=0, 'bg-green': Currency() >= 20  }"><i class="fa fa-usd"></i></span>
+        <span class="info-box-icon bg-green" data-bind="css: {  'bg-red': Currency() < 0 ,'bg-orange': Currency() < 20 && Currency() >=0, 'bg-green': Currency() >= 20  }">
+<i class="fa fa-credit-card"></i>
+</span>
 
         <div class="info-box-content">
             <span class="info-box-text">Stan konta</span>
             <span class="info-box-number" data-bind="text:Currency"></span>
         </div>
         <!-- /.info-box-content -->
+    </div>
+
+    <div class="small-box bg-green" data-bind="click:BuyCredit">
+        <div class="inner">
+            <h3>50<sup style="font-size: 20px">PLN</sup></h3>
+
+            <p>10% gratis</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-shopping-cart"></i>
+        </div>
+        <a class="small-box-footer" href="#">
+            Doładuj konto <i class="fa fa-arrow-circle-right"></i>
+        </a>
     </div>
 </div>
 
@@ -54,20 +70,24 @@
 
             ko.mapping.fromJS(json, null, this);
 
-            self.ChangeFirstName = function(e,params) {
+            self.ChangeFirstName = function(e, params) {
                 Ultra.postJson('@Url.Action("ChangeFirstName")', {
                     FirstName: params.newValue,
                 }, "Imię zostało zaktualizowane");
             };
-            self.ChangeLastName = function (e, params) {
+            self.ChangeLastName = function(e, params) {
                 Ultra.postJson('@Url.Action("ChangeLastName")', {
                     LastName: params.newValue,
                 }, "Nazwisko zostało zaktualizowane");
             };
-            self.ChangeCarId = function (e, params) {
+            self.ChangeCarId = function(e, params) {
                 Ultra.postJson('@Url.Action("ChangeCarId")', {
                     CarId: params.newValue,
                 }, "Rejestracja samochodu została zaktualizowana");
+            };
+
+            self.BuyCredit = function (e, params) {
+                window.location.href = "@Url.Action("BuyCredit", "Test")";
             };
         }
 

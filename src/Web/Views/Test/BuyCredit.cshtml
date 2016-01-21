@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>BuyCredit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body { height: 100%;width: 100%; }
+
+        body {
+            display: table;
+            margin: 0 auto;
+        }
+
+        .mycentercontainer {
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/Content/fontawesome4/font-awesome.min.css"/>
+</head>
+<body>
+<div class="mycentercontainer">
+    <i class="fa fa-bank fa-5x"></i>
+    <h1>Testowa strona banku</h1>
+    <h2> Płatność zostanie zrealizowana natychmiastowo</h2>
+    <h3>Za chwile zostaniesz przekierowany z powrotem na stronę Ultra parking</h3>
+</div>
+
+<script>
+    // redirect to google after 5 seconds
+    window.setTimeout(function () {
+        window.location.href = '@Url.Action("Index","User")';
+    }, 15000);
+</script>
+</body>
+</html>

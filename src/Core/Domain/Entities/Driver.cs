@@ -62,5 +62,10 @@ namespace Ultra.Core.Domain.Entities
         {
             LastName = lastname;
         }
+
+        public void AddCurency(decimal amount)
+        {
+            Currency += amount;
+        }
     }
 }

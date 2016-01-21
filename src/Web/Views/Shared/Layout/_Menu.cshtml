@@ -9,13 +9,13 @@
             {
                 <li class="active">
                     <a href="@Url.Action("Index", "User", new {Area = ""})">
-                        <i class="fa fa-link"></i> <span>Moje konto</span>
+                        <i class="fa fa-user"></i> <span>Moje konto</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="@Url.Action("Index", "Transactions", new {Area = ""})">
-                        <i class="fa fa-link"></i> <span>Lista transakcji</span>
+                        <i class="fa fa-bars"></i> <span>Lista transakcji</span>
                     </a>
                 </li>
             }
@@ -23,14 +23,14 @@
             {
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-link"></i> <span>Przegląd parkingów</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-building"></i> <span>Przegląd parkingów</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="@Url.Action("Index", "Parking", new {Area = "Owner"})">Lista parkingow</a>
+                            <a href="@Url.Action("Index", "Parking", new {Area = "Owner"})"><i class="fa fa-car"></i>Lista parkingow</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Transactions", new {Area = "Owner"})">Lista transakcji</a>
+                            <a href="@Url.Action("Index", "Transactions", new {Area = "Owner"})"><i class="fa fa-line-chart"></i> Lista transakcji</a>
                         </li>
                     </ul>
                 </li>
@@ -39,17 +39,17 @@
             {
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-link"></i> <span>Administracja stroną</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-cogs"></i> <span>Administracja stroną</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="@Url.Action("Index", "Parking", new {Area = "Admin"})">Zarządzanie parkingami</a>
+                            <a href="@Url.Action("Index", "Parking", new {Area = "Admin"})"><i class="fa fa-car"></i>Zarządzanie parkingami</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Transactions", new {Area = "Admin"})">Lista transakcji</a>
+                            <a href="@Url.Action("Index", "Transactions", new {Area = "Admin"})"><i class="fa fa-line-chart"></i>Lista transakcji</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Owner", new {Area = "Admin"})">Firmy</a>
+                            <a href="@Url.Action("Index", "Owner", new {Area = "Admin"})"><i class="fa fa-building"></i>Firmy</a>
                         </li>
                     </ul>
                 </li>

@@ -50,5 +50,6 @@ namespace Ultra.Web.Areas.Admin.Controllers
                 roleManager.Create(new IdentityRole(roleName));
             }
         }
+
     }
 }
