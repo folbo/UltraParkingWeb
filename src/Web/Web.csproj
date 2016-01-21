@@ -1022,12 +1022,6 @@
     <Content Include="Content\ko\bindings\knockout.x-editable.js" />
     <Content Include="Content\ko\knockout-3.3.0.js" />
     <Content Include="Content\ko\knockout.mapping-latest.js" />
-    <Content Include="Content\Site.css">
-      <DependentUpon>Site.less</DependentUpon>
-    </Content>
-    <Content Include="Content\Site.min.css">
-      <DependentUpon>Site.css</DependentUpon>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\bootstrap\wells.less" />
@@ -1269,7 +1263,6 @@
     <Content Include="Content\AdminLTE\plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="Content\AdminLTE\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\AdminLTE\plugins\input-mask\phone-codes\phone-codes.json" />
-    <Content Include="Content\Site.less" />
     <None Include="Project_Readme.html" />
     <Content Include="Content\jQuery\jquery-1.9.1.min.map" />
   </ItemGroup>
