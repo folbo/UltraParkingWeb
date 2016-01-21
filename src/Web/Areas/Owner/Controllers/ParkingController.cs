@@ -26,6 +26,8 @@ namespace Ultra.Web.Areas.Owner.Controllers
             return View(parking);
         }
 
+
+
         [HttpPost]
         public ActionResult RenameParking(RenameParking command)
         {
@@ -63,6 +65,22 @@ namespace Ultra.Web.Areas.Owner.Controllers
         }
 
         public ActionResult RemoveSegment(RemoveSegment command)
+        {
+            Please.Do(command);
+            return JsonOk();
+        }
+
+
+
+        public ActionResult Manage(ParkingWithPlacesById query)
+        {
+            var parking = Please.Give(query);
+
+            return View(parking);
+        }
+
+
+        public ActionResult MarkAs(MarkPlaceAs command)
         {
             Please.Do(command);
             return JsonOk();

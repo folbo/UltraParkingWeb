@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
 using Ultra.Core.Domain.Entities;
 using Ultra.Core.Domain.ViewModels;
@@ -20,11 +21,10 @@ namespace Ultra.Core.Mappings
             Mapper.CreateMap<Owner, OwnerVM>();
             Mapper.CreateMap<Driver, DriverVM>();
 
-
-            //Mapper.CreateMap<Parking, ParkingDTO>();
-            //Mapper.CreateMap<source, destination>()
-            //    .ForMember(dest => dest.propery, c => c.MapFrom(src => src.anotherProperty))
-            //    .ForMember(dest => dest.propery,c => c.ResolveUsing<CustomResolver>().FromMember(src => src.anotherProperty))
+            Mapper.CreateMap<Parking, ParkingWithPlacesVM>()
+                .ForMember(dest => dest.Places,
+                    c => c.ResolveUsing(src => src.Places.OrderBy(place => place.Segment).ThenBy(place => place.Number)));
+            Mapper.CreateMap<ParkingPlace, ParkingPlaceVM>();
         }
     }
 }

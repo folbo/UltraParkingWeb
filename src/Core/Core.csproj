@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Domain\Commands\Admin\Parking\DeleteParking.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\AddParking.cs" />
+    <Compile Include="Domain\Commands\Admin\Parking\MarkPlaceAs.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RemoveSegment.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\ResizeSegment.cs" />
     <Compile Include="Domain\Commands\Admin\Parking\RenameSegment.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Domain\Queries\Admin\AllParkings.cs" />
     <Compile Include="Domain\Queries\API\UsersTransactions.cs" />
     <Compile Include="Domain\Queries\Domain\ParkingAggregate.cs" />
+    <Compile Include="Domain\Queries\Owner\ParkingWithPlacesById.cs" />
     <Compile Include="Domain\Queries\UsersTransactions.cs" />
     <Compile Include="Domain\Queries\Owner\OwnerParkings.cs" />
     <Compile Include="Domain\Queries\Owner\OwnerTransactions.cs" />
@@ -115,13 +117,14 @@
     <Compile Include="Domain\Queries\UserHaveActiveBooking.cs" />
     <Compile Include="Domain\Queries\Domain\DriverAggregate.cs" />
     <Compile Include="Domain\ViewModels\DriverVM.cs" />
+    <Compile Include="Domain\ViewModels\ParkingWithPlacesVM.cs" />
     <Compile Include="Domain\ViewModels\UserVM.cs" />
     <Compile Include="Domain\ViewModels\OwnerVM.cs" />
     <Compile Include="Domain\ViewModels\ParkingInfoVM.cs" />
     <Compile Include="Domain\ViewModels\ParkingSegmentVM.cs" />
     <Compile Include="Domain\ViewModels\ParkingVM.cs" />
     <Compile Include="Domain\ViewModels\PaymentVM.cs" />
-    <Compile Include="Domain\ViewModels\PlaceVM.cs" />
+    <Compile Include="Domain\ViewModels\ParkingPlaceVM.cs" />
     <Compile Include="Infrastructure\Base.cs" />
     <Compile Include="Infrastructure\Commands\CommandBus.cs" />
     <Compile Include="Infrastructure\Commands\CommandHandler.cs" />

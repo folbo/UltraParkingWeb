@@ -46,7 +46,7 @@ namespace Ultra.Core.Domain.Entities
             Parking.Update();
         }
 
-        public void MarkAsBusy(Guid driverId)
+        public void MarkAsBusy()
         {
             if (Status == Status.Busy)
             {
@@ -56,11 +56,6 @@ namespace Ultra.Core.Domain.Entities
             if (Status == Status.Free)
             {
                 StartTime = DateTime.UtcNow;
-                DriverId = driverId;
-            }
-            if (DriverId != driverId)
-            {
-                throw new InvalidOperationException();
             }
             Status = Status.Busy;
 
@@ -77,6 +72,18 @@ namespace Ultra.Core.Domain.Entities
             Status = Status.Free;
             StartTime = null;
             DriverId = null;
+
+            Parking.Update();
+        }
+
+        public void MarkAsReserved()
+        {
+            if (Status != Status.Free)
+            {
+                throw new NotSupportedException();
+            }
+            Status = Status.Reserved;
+            StartTime = DateTime.UtcNow;
 
             Parking.Update();
         }

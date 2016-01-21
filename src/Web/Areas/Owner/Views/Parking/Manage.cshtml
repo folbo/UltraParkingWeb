@@ -1,0 +1,108 @@
+﻿@using Ultra.Core.Domain.Entities
+@model Ultra.Core.Domain.ViewModels.ParkingWithPlacesVM
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div class="box">
+    <div class="box-header with-border">
+        <h2>
+            Parkingi
+        </h2>
+
+
+    </div>
+
+    <div class="box-body no-padding">
+        <table class="table">
+            <tr>
+                <th>
+                    Numer
+                </th>
+                <th>
+                    Godzina rozpoczęcia parkowania
+                </th>
+
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var group in Model.Places.GroupBy(vm => vm.SegmentName))
+            {
+                <tr class="info">
+                    <td colspan="4">
+                        Segment @group.Key
+                    </td>
+                </tr>
+                foreach (var item in group)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartTime)
+                        </td>
+                        <td>
+                            <form action="@Url.Action("MarkAs")" method="POST" class="async-form">
+                                <input type="hidden" name="Id" value="@item.Id"/>
+                                <input type="hidden" name="ParkingId" value="@item.ParkingId"/>
+                                <div class="btn-group">
+
+                                    <button type="submit" class="btn btn-flat bg-aqua" value="Free" name="Status" @(item.Status == Status.Free ? "disabled" : "")>Wolne </button>
+                                    <button type="submit" class="btn btn-flat bg-aqua" value="Reserved" name="Status" @(item.Status == Status.Reserved ? "disabled" : "")>Zarezerwowane</button>
+                                    <button type="submit" class="btn btn-flat bg-aqua" value="Busy" name="Status" @(item.Status == Status.Busy ? "disabled" : "")>Zajęte </button>
+                                </div>
+                            </form>
+
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+
+
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $.fn.serializeObject = function () {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name] !== undefined) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+                return o;
+            };
+
+            $('form.async-form button[type=submit]').click(function (e) {
+                var formData = $(this).closest('form').serializeObject();
+                formData[this.name] = this.value;
+                //e.preventDefault();
+                Ultra.postJson($(this).closest('form').attr('action'), formData, "Zmieniono status")
+                    .success(function(res) {
+                        location.reload();
+                    });
+                
+                return false; // prevent default action
+            });
+        });
+    </script>
+}

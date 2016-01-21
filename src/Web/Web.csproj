@@ -998,6 +998,7 @@
     <Content Include="Areas\Owner\Views\Parking\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Transactions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Owner\Index.cshtml" />
+    <Content Include="Areas\Owner\Views\Parking\Manage.cshtml" />
     <None Include="Content\AdminLTE\plugins\select2\select2.less" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.full.js" />
     <Content Include="Content\AdminLTE\plugins\select2\select2.full.min.js" />
