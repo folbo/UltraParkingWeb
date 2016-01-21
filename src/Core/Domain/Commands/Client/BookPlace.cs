@@ -22,7 +22,7 @@ namespace Ultra.Core.Domain.Commands.Client
             {
                 throw new InvalidOperationException();
             }
-            if (Please.Check(new UserHaveEnoughMoneyToBook(command.UserId)))
+            if (!Please.Check(new UserHaveEnoughMoneyToBook(command.UserId)))
             {
                 throw new InvalidOperationException();
             }
