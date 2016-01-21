@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Swashbuckle.Swagger.Annotations;
+using Ultra.Core.Domain.Commands.Admin.Parking;
 using Ultra.Core.Domain.Commands.Client;
 using Ultra.Core.Domain.DTO;
 using Ultra.Core.Domain.Queries.API;
@@ -75,6 +76,18 @@ namespace Ultra.Web.Controllers.Api
             return place == null
                 ? Request.CreateResponse((HttpStatusCode) 422)
                 : Request.CreateResponse(HttpStatusCode.OK, place);
+        }
+
+        /// <summary>
+        /// Oznacza miejsce odpowiednim statusem. Wymaga aspecjalnych uprawnień
+        /// </summary>
+        /// <param name="command"></param>
+        [Route("markAs")]
+        [HttpPost]
+        [Authorize(Roles = "Owner")]
+        public void MarkAs(MarkPlaceAs command)
+        {
+            Please.Do(command);
         }
     }
 }

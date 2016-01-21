@@ -10,6 +10,7 @@ namespace Ultra.Core.Mappings
         {
             Mapper.CreateMap<Parking, ParkingDTO>();
             Mapper.CreateMap<ParkingPlace, ParkingPlaceDTO>();
+            Mapper.CreateMap<Driver, UserStatusDTO>();
             //Mapper.CreateMap<source, destination>()
             //    .ForMember(dest => dest.propery, c => c.MapFrom(src => src.anotherProperty))
             //    .ForMember(dest => dest.propery,c => c.ResolveUsing<CustomResolver>().FromMember(src => src.anotherProperty))

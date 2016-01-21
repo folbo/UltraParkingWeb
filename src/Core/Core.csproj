@@ -84,6 +84,7 @@
     <Compile Include="Domain\Commands\Client\ChangeLastName.cs" />
     <Compile Include="Domain\Commands\Client\ChangeFirstName.cs" />
     <Compile Include="Domain\Commands\Client\BookPlace.cs" />
+    <Compile Include="Domain\DTO\UserStatusDTO.cs" />
     <Compile Include="Domain\DTO\ParkingPlaceDTO.cs" />
     <Compile Include="Domain\DTO\ParkingDTO.cs" />
     <Compile Include="Domain\DTO\PaymentDTO.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Domain\Queries\Admin\AllParkings.cs" />
     <Compile Include="Domain\Queries\API\UsersTransactions.cs" />
     <Compile Include="Domain\Queries\Domain\ParkingAggregate.cs" />
+    <Compile Include="Domain\Queries\UserStatus.cs" />
     <Compile Include="Domain\Queries\Owner\ParkingWithPlacesById.cs" />
     <Compile Include="Domain\Queries\UsersTransactions.cs" />
     <Compile Include="Domain\Queries\Owner\OwnerParkings.cs" />

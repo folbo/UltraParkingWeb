@@ -9,7 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Swashbuckle.Swagger.Annotations;
+using Ultra.Core.Domain.DTO;
 using Ultra.Core.Domain.Events;
+using Ultra.Core.Domain.Queries;
 using Ultra.Core.Infrastructure.Data;
 using Ultra.Web.Infrastructure;
 
@@ -132,6 +134,21 @@ namespace Ultra.Web.Controllers.Api
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+        
+        
+        /// <summary>
+        ///    Pokazuje status obecnie zalogowanego użytkownika
+        /// </summary>
+        /// <response code="200"></response>
+        [HttpGet]
+        [Authorize]
+        [Route("status")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof (UserStatusDTO))]
+        public UserStatusDTO Status()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            return Please.Give(new UserStatus(userId));
         }
 
         protected override void Dispose(bool disposing)
