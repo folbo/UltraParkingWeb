@@ -1,14 +1,14 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using Ultra.Core.Domain.Queries.Owner;
-using Ultra.Core.Domain.ViewModels;
+using Ultra.Core.Domain.DTO;
 using Ultra.Core.Infrastructure.Queries;
 
-namespace Ultra.Core.Domain.Queries
+namespace Ultra.Core.Domain.Queries.API
 {
-    public class UsersTransactions : IQuery<IEnumerable<PaymentVM>>
+    public class UsersTransactions : IQuery<IEnumerable<PaymentDTO>>
     {
         public UsersTransactions(Guid driverId)
         {
@@ -18,9 +18,9 @@ namespace Ultra.Core.Domain.Queries
         public Guid DriverId { get; set; }
     }
 
-    public class UsersTransactionsQueryPerformer : QueryPerformer<UsersTransactions, IEnumerable<PaymentVM>>
+    public class UsersTransactionsQueryPerformer : QueryPerformer<UsersTransactions, IEnumerable<PaymentDTO>>
     {
-        public override IEnumerable<PaymentVM> Perform(UsersTransactions query)
+        public override IEnumerable<PaymentDTO> Perform(UsersTransactions query)
         {
             return Data.DriverPayments
                 .Include(p => p.DriverId)
@@ -28,9 +28,8 @@ namespace Ultra.Core.Domain.Queries
                 .Join(Data.Parkings
                     , payment => payment.ParkingId
                     , parking => parking.Id
-                    , (payment, parking) => new PaymentVM
+                    , (payment, parking) => new PaymentDTO
                     {
-                        DriverName = payment.Driver.FirstName + " " + payment.Driver.LastName,
                         StartTime = payment.StartTime,
                         EndTime = payment.EndTime,
                         Price = payment.Price,

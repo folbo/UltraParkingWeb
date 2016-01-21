@@ -223,6 +223,7 @@
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\ParkingController.cs" />
     <Compile Include="Controllers\Api\TestController.cs" />
+    <Compile Include="Controllers\Api\TransactionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
